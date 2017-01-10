@@ -115,7 +115,7 @@ body {
   color: #6482a5;
 }
 
-.sp-mini-boxes {
+/*.sp-mini-boxes {
     border: 2px solid #6482a5;
     width: 15px;
     height: 15px;
@@ -128,10 +128,45 @@ body {
     
     
 
+}*/
+
+.state-boxes {
+    border: 2px solid #6482a5;
+    /*padding: 1px;*/
+    /*width: 100px;*/
+    float: left;
+    margin: 5px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: -5px;
+
 }
 
+    .state-boxes p {
+      /*padding: 1px;*/
+      letter-spacing: 5px;
+      float: left;
+      padding-right: 10px;
+      margin: 3px;
+
+    }
+
+    .sp-mini-boxes ul {
+      margin-top: 0;
+      float: right;
+      /*text-decoration: none;*/
+    }
+
+    .sp-mini-boxes li {
+      list-style: none;
+    }
+
 .sp-mini-boxes p {
-  padding: 0;
+  font-size: 0.5em;
+  margin-right: 1em;
+  /*float: right;*/
+  padding: 1px;
+  border: 2px solid #6482a5;
 }
 
 .random-codes li {
