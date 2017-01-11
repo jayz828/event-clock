@@ -32,7 +32,7 @@ body {
   
    width: 2%;
  
-  //background-color: #6b9251;
+  background-color: #6b9251;
   
 }
 
@@ -107,8 +107,8 @@ body {
 }
 
 #status-panel {
-  background-color: white;
-  width: 60%;
+  /*background-color: white;*/
+  width: 65%;
   height: 100px;
   float: right;
   margin-right: 40px;
@@ -131,7 +131,7 @@ body {
 }*/
 
 .state-boxes {
-    border: 2px solid #6482a5;
+    border: 1px solid #6482a5;
     /*padding: 1px;*/
     /*width: 100px;*/
     float: left;
@@ -142,9 +142,21 @@ body {
 
 }
 
+    .state-boxes:nth-child(2) {
+      background-color: #09233e;
+    }
+
+    .state-boxes:nth-child(5) {
+      background-color: #09233e;
+    }
+
+    .state-boxes:nth-child(7) {
+      background-color: #09233e;
+    }
+
     .state-boxes p {
       /*padding: 1px;*/
-      letter-spacing: 5px;
+      letter-spacing: 2px;
       float: left;
       padding-right: 10px;
       margin: 3px;
@@ -160,6 +172,19 @@ body {
     .sp-mini-boxes li {
       list-style: none;
     }
+
+.circle-meter {
+    border-left: 5px solid #758983;
+    border-right: 5px solid #758983;
+    border-top: 5px solid #ffff70;
+    border-bottom: 5px solid #758983;;
+    border-radius: 100px;
+    height: 10px;
+    width: 10px;
+    float: left;
+    margin: 8px;
+
+}
 
 .sp-mini-boxes p {
   font-size: 0.5em;
