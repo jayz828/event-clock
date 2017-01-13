@@ -22,23 +22,31 @@ var timerStatus = "off";
 
 
 
+
 function start() {
 	timerStatus = "on";
-	
-	setInterval(function() {
+	var timer = setInterval(function() {
 		increment();
 	}, 1000);
+
 
 	
 }
 
 function increment() {
 		
+		var testSeconds = document.getElementById('minutes');
 
 		timeTest = timeTest -1;
-		setSeconds = "59";
+		document.getElementById('seconds').innerHTML = 	timeTest;
+		// setSeconds = timeTest;
+		// clearInterval(timer);
+
 		// alert(setSeconds);
-		console.log(timeTest);
+
+		// testSeconds.value = "59";
+		// alert(setSeconds);
+		// console.log(setSeconds);
 
 }
 
