@@ -1,30 +1,46 @@
 
+	var timerStatus = "off";
+	var timeTest = 60;
 
-// Values for timer
+window.onload = function() {
 
-var setMinutes = document.getElementById('minutes').innerHTML;
-var setSeconds = document.getElementById('seconds').innerHTML;
+	// Event listeners
 
+	var startButton = document.getElementById("start-button");
+	var stopButton = document.getElementById("stop-button");
+	var resetButton = document.getElementById("reset-button");
 
-// Event listeners
-
-var startButton = document.getElementById('start-button');
-var resetButton = document.getElementById('reset-button');
-
-startButton.addEventListener('click', start);
-
-var timeTest = 60;
+	startButton.addEventListener("click", start);
 
 
 
-var timerStatus = "off";
+
+
+};
+
+
+
+
+
+
+
+
 
 
 
 
 
 function start() {
+
+
 	timerStatus = "on";
+
+	var startButton = document.getElementById("start-button");
+	var startText = document.getElementById("start-text");
+
+	startButton.style.borderColor = "#1a280b";
+	startText.style.color = "#1a280b";
+	
 	var timer = setInterval(function() {
 		increment();
 	}, 1000);
@@ -34,11 +50,17 @@ function start() {
 }
 
 function increment() {
-		
-		var testSeconds = document.getElementById('minutes');
+
+
+
+		var setSeconds = document.getElementById("seconds");
+		var testSeconds = document.getElementById("minutes");
 
 		timeTest = timeTest -1;
-		document.getElementById('seconds').innerHTML = 	timeTest;
+
+		setSeconds.innerHTML = timeTest;
+
+		// console.log(setSeconds);
 		// setSeconds = timeTest;
 		// clearInterval(timer);
 
@@ -49,6 +71,8 @@ function increment() {
 		// console.log(setSeconds);
 
 }
+
+
 
 // function reset() {
 
