@@ -1,6 +1,33 @@
 
-	var timerStatus = "off";
-	var timeTest = 60;
+
+
+
+	// var timer = {
+	// 	minute: 25,
+	// 	seconds: 59,
+	// 	milliseconds: 1000,
+	// 	timerStatus: "off"
+
+	// };
+
+
+function timer(minutes, seconds, milliseconds, status) {
+	this.minutes = minutes;
+	this.seconds = seconds;
+	this.milliseconds = milliseconds;
+	this.status = status;
+}
+
+
+var timerStatus = "off";
+var setMinutes = document.getElementById("minutes").innerHTML;
+var setSeconds = document.getElementById("seconds").innerHTML;
+var setMilliseconds = document.getElementById("milliseconds").innerHTML;
+
+
+var pomodoro = new timer(setMinutes, setSeconds, setMilliseconds, timerStatus);
+
+
 
 window.onload = function() {
 
@@ -11,6 +38,7 @@ window.onload = function() {
 	var resetButton = document.getElementById("reset-button");
 
 	startButton.addEventListener("click", start);
+	stopButton.addEventListener("click", stop);
 
 
 
@@ -18,29 +46,43 @@ window.onload = function() {
 
 };
 
+function changeButtonStatus(button, text, color) {
+
+	var disableButton = document.getElementById(button);
+	var disableText = document.getElementById(text);
+
+	disableButton.style.borderColor = color;
+	disableText.style.color = color;
 
 
-
-
-
-
-
-
-
+}
 
 
 
 function start() {
 
 
-	timerStatus = "on";
+	pomodoro.status = "on";
+	console.log(pomodoro.status);
 
-	var startButton = document.getElementById("start-button");
-	var startText = document.getElementById("start-text");
 
-	startButton.style.borderColor = "#1a280b";
-	startText.style.color = "#1a280b";
+	// Gives the start button an effect that it turned off 
+
+	changeButtonStatus("start-button", "start-text", "#1a280b");
+
+
+
+	// Light up stop button
+
+	changeButtonStatus("stop-button", "stop-text", "#da0109");
+	// var stopButton = document.getElementById("stop-button");
+	// var stopText = document.getElementById("stop-text");
+	// stopButton.style.borderColor = "#da0109";
+	// stopText.style.color = "#da0109";
+
 	
+
+	// timer increment
 	var timer = setInterval(function() {
 		increment();
 	}, 1000);
@@ -53,22 +95,51 @@ function increment() {
 
 
 
-		var setSeconds = document.getElementById("seconds");
-		var testSeconds = document.getElementById("minutes");
+		var pageSeconds = document.getElementById("seconds");
+		var pageMinutes = document.getElementById("minutes");
 
-		timeTest = timeTest -1;
+		// var numberLength = pomodoro.seconds.toString();
+		// var numberLength = numberLength.length
 
-		setSeconds.innerHTML = timeTest;
+		
 
-		// console.log(setSeconds);
-		// setSeconds = timeTest;
-		// clearInterval(timer);
+		// var currentSeconds = pomodoro.seconds;
 
-		// alert(setSeconds);
+		// console.log(currentSeconds);
 
-		// testSeconds.value = "59";
-		// alert(setSeconds);
-		// console.log(setSeconds);
+
+		// console.log(currentSeconds.innerHTML);
+
+		if (pomodoro.seconds == 00) {
+			pomodoro.seconds  = 60;
+			pomodoro.minutes = pomodoro.minutes - 1;
+		} 
+
+
+		// console.log(pomodoro.seconds);
+	
+
+		pomodoro.seconds = pomodoro.seconds - 1;
+
+		if (pomodoro.seconds < 10) {
+
+			pageSeconds.innerHTML = "0" + pomodoro.seconds;
+			
+		} else {
+			pageSeconds.innerHTML = pomodoro.seconds;
+		
+		}
+
+
+		pageMinutes.innerHTML = pomodoro.minutes;
+
+
+
+
+
+}
+
+function stop() {
 
 }
 
