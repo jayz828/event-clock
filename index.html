@@ -83,23 +83,30 @@
     
     <div id="status-panel">
       		<div class="state-boxes">
-      			<p>STATE</p>
+      			<p>SET</p>
       		</div>
       		<div class="state-boxes">
-      			<p>CHARGED</p>
+      			<p>TIMER</p>
       		</div>
           <div class="circle-meter"></div>
 
           <div class="state-boxes">
-            <p>STATE</p>
+            <p>SET</p>
           </div>
           <div class="state-boxes">
-            <p>CHARGED</p>
+            <p>BREAK TIMER</p>
           </div>
 
           <div class="circle-meter"></div>
           <div class="state-boxes">
             <p>NOMINAL</p>
+          </div>
+
+          <div class="clear-fix"></div>
+          
+          <div id="pomodoro-timer" class="timer-controls">
+            <p id="pomodoro-plus">+</p>
+            <p id="pomodoro-minus">-</p>
           </div>
 
 
@@ -131,20 +138,20 @@
 
     <div id="event-clock-timer">
 
+
+
       <div id="event-clock-timer-value" class="text">
  
-        <div id="time-remaining"><span id="minutes">25</span><span>:</span><span id="seconds">00</span><span>:</span><span id="milliseconds">00</span></div>
+        <div id="time-remaining"><span id="minutes">25</span><span>:</span><span id="seconds">00</span><span></span><span id="milliseconds"></span>
+        </div>
 
-<!--         <ul id="time-remaining">
-          <li><p id="minutes">25</p></li>
-          <li><p>:</p></li>
-          <li><p id="seconds">00</p></li>
-          <li><p>:</p></li>
-          <li><p id="milliseconds">00</p></li>
-        </ul> -->
-        
+
       
 
+      </div>
+
+      <div id="break-timer">
+            <p><span>5</span><span>:</span><span>00</span></p>
       </div>
 
       <div id="button-panel">

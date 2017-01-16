@@ -39,12 +39,20 @@ window.onload = function() {
 
 	startButton.addEventListener("click", start);
 	stopButton.addEventListener("click", stop);
+	resetButton.addEventListener("click", reset);
 
+	var pomodoroPlus = document.getElementById("pomodoro-plus");
+	var pomodoroMinus = document.getElementById("pomodoro-minus");
+
+	pomodoroPlus.addEventListener("click", addTime);
+	pomodoroMinus.addEventListener("click", minusTime);
 
 
 
 
 };
+
+
 
 function changeButtonStatus(button, text, color) {
 
@@ -61,8 +69,8 @@ function changeButtonStatus(button, text, color) {
 
 function start() {
 
-
 	pomodoro.status = "on";
+
 	console.log(pomodoro.status);
 
 
@@ -75,17 +83,23 @@ function start() {
 	// Light up stop button
 
 	changeButtonStatus("stop-button", "stop-text", "#da0109");
-	// var stopButton = document.getElementById("stop-button");
-	// var stopText = document.getElementById("stop-text");
-	// stopButton.style.borderColor = "#da0109";
-	// stopText.style.color = "#da0109";
 
 	
 
 	// timer increment
 	var timer = setInterval(function() {
 		increment();
+
+	if (pomodoro.status == "off") {
+
+		clearInterval(timer);
+
+
+		}
 	}, 1000);
+
+
+
 
 
 	
@@ -95,31 +109,31 @@ function increment() {
 
 
 
+
 		var pageSeconds = document.getElementById("seconds");
 		var pageMinutes = document.getElementById("minutes");
 
-		// var numberLength = pomodoro.seconds.toString();
-		// var numberLength = numberLength.length
-
-		
-
-		// var currentSeconds = pomodoro.seconds;
-
-		// console.log(currentSeconds);
-
-
-		// console.log(currentSeconds.innerHTML);
+		// Seconds count down timer
 
 		if (pomodoro.seconds == 00) {
 			pomodoro.seconds  = 60;
 			pomodoro.minutes = pomodoro.minutes - 1;
+
+			console.log(pomodoro.minutes);	
+
+		if (pomodoro.minutes < 10 ) {
+				pageMinutes.innerHTML = "0" + pomodoro.minutes;
+			} else {
+				pageMinutes.innerHTML = pomodoro.minutes;
+			}
+
 		} 
 
-
-		// console.log(pomodoro.seconds);
 	
-
 		pomodoro.seconds = pomodoro.seconds - 1;
+
+		// If seonds values is less than to adds an extra 0 to display properly
+
 
 		if (pomodoro.seconds < 10) {
 
@@ -131,7 +145,14 @@ function increment() {
 		}
 
 
-		pageMinutes.innerHTML = pomodoro.minutes;
+
+
+		if ((pomodoro.minutes == 0) && (pomodoro.seconds == 0)) {
+			stop();
+		}
+
+
+		// pageMinutes.innerHTML = pomodoro.minutes;
 
 
 
@@ -141,8 +162,33 @@ function increment() {
 
 function stop() {
 
+	pomodoro.status = "off";
+
+	// Gives the start button an effect that it turned off 
+
+	changeButtonStatus("start-button", "start-text", "#00e415");
+
+
+
+	// Light up stop button
+
+	changeButtonStatus("stop-button", "stop-text", "#350c1f");
+
+
 }
 
+
+function reset() {
+	pomodoro.minutes = 25;
+	pomodoro.seconds = 1;
+	// pomodoro.status = "off";
+}
+
+
+function addTime() {
+	alert('works');
+
+}
 
 
 // function reset() {
