@@ -2,6 +2,7 @@
 
 
 
+
 	// var timer = {
 	// 	minute: 25,
 	// 	seconds: 59,
@@ -11,11 +12,50 @@
 	// };
 
 
-function timer(minutes, seconds, milliseconds, status) {
-	this.minutes = minutes;
-	this.seconds = seconds;
-	this.milliseconds = milliseconds;
-	this.status = status;
+
+	// Timer object
+function timer(setMinutes, setSeconds, setStatus) {
+	this.minutes = parseInt(setMinutes);
+	this.seconds = parseInt(setSeconds);
+	var status = setStatus;
+
+
+	this.startTimer = function() {
+
+	}
+
+	this.stopTimer = function() {
+
+	}
+
+	this.resetTimer = function() {
+
+	}
+
+	this.addTime = function() {
+		// minutes = parseInt(minutes);
+		// minutes = minutes+1;	
+		minutes = minutes+1;
+		document.getElementById("minutes").innerHTML = minutes;
+
+
+
+	}
+
+	this.minusTime = function() {
+
+	}
+
+	this.getMinutes = function() {
+		return minutes;	
+	}
+	this.getSeconds = function() {
+		return seconds;
+	}
+
+	this.setSeconds = function() {
+
+	}
 }
 
 
@@ -44,8 +84,8 @@ window.onload = function() {
 	var pomodoroPlus = document.getElementById("pomodoro-plus");
 	var pomodoroMinus = document.getElementById("pomodoro-minus");
 
-	pomodoroPlus.addEventListener("click", addTime);
-	pomodoroMinus.addEventListener("click", minusTime);
+	pomodoroPlus.addEventListener("click", pomodoro.addTime);
+	pomodoroMinus.addEventListener("click", pomodoro.minusTime);
 
 
 
@@ -72,6 +112,12 @@ function start() {
 	pomodoro.status = "on";
 
 	console.log(pomodoro.status);
+
+	console.log(pomodoro.minutes);
+
+	alert(pomodoro.getMinutes());
+
+	// console.log(pomodoro.getMinutes());
 
 
 	// Gives the start button an effect that it turned off 
@@ -185,10 +231,7 @@ function reset() {
 }
 
 
-function addTime() {
-	alert('works');
 
-}
 
 
 // function reset() {
