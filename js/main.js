@@ -1,5 +1,90 @@
 
+	// Timer object
 
+	function Timer(currentMinutes, currentSeconds, setStatus) {
+		var minutes = parseInt(currentMinutes);
+		var seconds = parseInt(currentSeconds);
+		var status = setStatus;
+
+		this.addTime = function() {
+			
+			minutes +=1;
+			secondsId.innerHTML = minutes;
+		};
+
+		this.minusTime = function() {
+
+		};
+
+		
+
+		this.getMinutes = function() {
+			return minutes;
+		};
+
+		this.getSeconds = function() {
+			return seconds;
+		};
+
+		this.setMinutes = function(newMinutes) {
+			minutes = newMinutes;
+		};
+
+		this.setSeconds = function(newSeconds) {
+			seconds = newSeconds;
+		};
+
+
+
+	}
+
+
+	// Object.__defineGetter__.call(Timer.prototype, "getMinutes", function() {
+	// return minutes;
+	// });
+
+	// Object.__defineSetter__.call(Timer.prototype, "setMinutes", function(minutes) {
+	// this.minutes = this.minutes + minutes;
+	// });
+
+	// Timer.prototype.getMinutes = function() {
+
+	// return this.minutes;
+	// }
+
+	// Timer.prototype.getSeconds = function() {
+
+	// return this.seconds;
+	// }
+
+	// Timer.prototype.setMinutes = function() {
+
+	
+	// }
+
+
+
+
+
+
+
+
+
+	var pomodoroPlus = document.getElementById("pomodoro-plus");
+	var pomodoroMinus = document.getElementById("pomodoro-minus");
+
+	var secondsId = document.getElementById("minutes");
+
+	var timerStatus = "off";
+	var currentMinutes = document.getElementById("minutes").innerHTML;
+	var currentSeconds = document.getElementById("seconds").innerHTML;
+
+	var pomodoro = new Timer(currentMinutes, currentSeconds, timerStatus);
+
+	pomodoroPlus.addEventListener("click", pomodoro.addTime);
+	pomodoroMinus.addEventListener("click", pomodoro.minusTime);
+
+	// alert(pomodoro.getMinutes());
 
 
 
@@ -13,63 +98,68 @@
 
 
 
-	// Timer object
-function timer(setMinutes, setSeconds, setStatus) {
-	this.minutes = parseInt(setMinutes);
-	this.seconds = parseInt(setSeconds);
-	var status = setStatus;
-
-
-	this.startTimer = function() {
-
-	}
-
-	this.stopTimer = function() {
-
-	}
-
-	this.resetTimer = function() {
-
-	}
-
-	this.addTime = function() {
-		// minutes = parseInt(minutes);
-		// minutes = minutes+1;	
-		minutes = minutes+1;
-		document.getElementById("minutes").innerHTML = minutes;
 
 
 
-	}
-
-	this.minusTime = function() {
-
-	}
-
-	this.getMinutes = function() {
-		return minutes;	
-	}
-	this.getSeconds = function() {
-		return seconds;
-	}
-
-	this.setSeconds = function() {
-
-	}
-}
 
 
-var timerStatus = "off";
-var setMinutes = document.getElementById("minutes").innerHTML;
-var setSeconds = document.getElementById("seconds").innerHTML;
-var setMilliseconds = document.getElementById("milliseconds").innerHTML;
 
 
-var pomodoro = new timer(setMinutes, setSeconds, setMilliseconds, timerStatus);
+// function Timer(setMinutes, setSeconds, setStatus) {
+// 	this.minutes = setMinutes;
+// 	this.seconds = parseInt(setSeconds);
+// 	var status = setStatus;
+
+
+// 	this.startTimer = function() {
+
+// 	}
+
+// 	this.stopTimer = function() {
+
+// 	}
+
+// 	this.resetTimer = function() {
+
+// 	}
+
+// 	this.addTime = function() {
+
+
+// 		alert(this.minutes);
+// 		// minutes = parseInt(minutes);
+// 		// minutes = minutes+1;	
+// 		// minutes = minutes+1;
+// 		// document.getElementById("minutes").innerHTML = minutes;
+
+
+
+// 	}
+
+// 	this.minusTime = function() {
+
+// 	}
+
+// 	this.getMinutes = function() {
+// 		return minutes;	
+// 	}
+// 	this.getSeconds = function() {
+// 		return seconds;
+// 	}
+
+// 	this.setSeconds = function() {
+
+// 	}
+// }
+
 
 
 
 window.onload = function() {
+
+
+
+
 
 	// Event listeners
 
@@ -81,11 +171,11 @@ window.onload = function() {
 	stopButton.addEventListener("click", stop);
 	resetButton.addEventListener("click", reset);
 
-	var pomodoroPlus = document.getElementById("pomodoro-plus");
-	var pomodoroMinus = document.getElementById("pomodoro-minus");
 
-	pomodoroPlus.addEventListener("click", pomodoro.addTime);
-	pomodoroMinus.addEventListener("click", pomodoro.minusTime);
+
+
+
+	
 
 
 
@@ -111,11 +201,8 @@ function start() {
 
 	pomodoro.status = "on";
 
-	console.log(pomodoro.status);
 
-	console.log(pomodoro.minutes);
 
-	alert(pomodoro.getMinutes());
 
 	// console.log(pomodoro.getMinutes());
 
@@ -161,39 +248,40 @@ function increment() {
 
 		// Seconds count down timer
 
-		if (pomodoro.seconds == 00) {
-			pomodoro.seconds  = 60;
-			pomodoro.minutes = pomodoro.minutes - 1;
+		if (pomodoro.getSeconds() == 00) {
+			pomodoro.setSeconds(60);
+			pomodoro.setMinutes(pomodoro.getMinutes() - 1);
 
-			console.log(pomodoro.minutes);	
+			console.log(pomodoro.getMinutes());
+			console.log(pomodoro.getSeconds());	
 
-		if (pomodoro.minutes < 10 ) {
-				pageMinutes.innerHTML = "0" + pomodoro.minutes;
+		if (pomodoro.getMinutes() < 10 ) {
+				pageMinutes.innerHTML = "0" + pomodoro.getMinutes();
 			} else {
-				pageMinutes.innerHTML = pomodoro.minutes;
+				pageMinutes.innerHTML = pomodoro.getMinutes();
 			}
 
 		} 
 
 	
-		pomodoro.seconds = pomodoro.seconds - 1;
+		pomodoro.setSeconds(pomodoro.getSeconds() - 1);
 
 		// If seonds values is less than to adds an extra 0 to display properly
 
 
-		if (pomodoro.seconds < 10) {
+		if (pomodoro.getSeconds() < 10) {
 
-			pageSeconds.innerHTML = "0" + pomodoro.seconds;
+			pageSeconds.innerHTML = "0" + pomodoro.getSeconds();
 			
 		} else {
-			pageSeconds.innerHTML = pomodoro.seconds;
+			pageSeconds.innerHTML = pomodoro.getSeconds();
 		
 		}
 
 
 
 
-		if ((pomodoro.minutes == 0) && (pomodoro.seconds == 0)) {
+		if ((pomodoro.getMinutes() == 0) && (pomodoro.getSeconds == 0)) {
 			stop();
 		}
 
