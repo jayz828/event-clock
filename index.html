@@ -15,14 +15,22 @@
 </head>
 <body>
 
-<div id="top-bar" class="top-bar-common meter-bar">
+<div class="container">
 
-</div>
-<div id="top-bar-middle" class="top-bar-common">
-</div>
-<div id="top-bar-right" class="top-bar-common green-bar"></div>
+
+    <div class="container-meter">
+        <div id="top-bar" class="top-bar-common meter-bar"></div>
+   
+        <div id="top-bar-middle" class="top-bar-common"></div>
+        <div id="top-bar-right" class="top-bar-common green-bar"></div>
+
+     </div> <!-- /end container-meter -->
+
+
 
 <div class="clear-fix"></div>
+
+
 
 <div id="container">
 
@@ -33,6 +41,8 @@
     <div id="admin-label">
       <p>MODE ADMIN-></p>
     </div>
+    
+
     <div class="green-bar green-boxes"></div>
     <div class="green-bar green-boxes"></div>
     <div class="green-bar green-boxes"></div>
@@ -40,94 +50,128 @@
     
   </div>
   <!--  End admin bar container  -->
-  <div id="top-panel">
-    <div class="random-codes">
-      <ul>
-        <li>V499.XXA</li>
-        <li>E81.9</li>
-        <li>M54.5</li>
-      </ul>
-    </div>
-    
-        <div class="random-codes">
-      <ul>
-        <li>M33X.XA</li>
-        <li>S234.2</li>
-        <li>77845</li>
-      </ul>
-    </div>
-    
+
+
+
+
+
+
+
+
+     <div id="top-panel">
+
+      <div id="codes">
             <div class="random-codes">
-      <ul>
-        <li>M2231.4</li>
-        <li>9982.3</li>
-        <li>971.24</li>
-      </ul>
-    </div>
-    
+              <ul>
+                <li>V499.XXA</li>
+                <li>E81.9</li>
+                <li>M54.5</li>
+              </ul>
+            </div>
+          
             <div class="random-codes">
-      <ul>
-        <li>97.110</li>
-        <li>M340.4</li>
-        <li>S2302.3</li>
-      </ul>
-    </div>
-    
+              <ul>
+                <li>M33X.XA</li>
+                <li>S234.2</li>
+                <li>77845</li>
+              </ul>
+            </div>
+          
             <div class="random-codes">
-      <ul>
-        <li>97140.59</li>
-        <li>S4XX.A</li>
-        <li>M213.4</li>
-      </ul>
-    </div>
+              <ul>
+                <li>M2231.4</li>
+                <li>9982.3</li>
+                <li>971.24</li>
+              </ul>
+            </div>
+          
+            <div class="random-codes">
+              <ul>
+                <li>97.110</li>
+                <li>M340.4</li>
+                <li>S2302.3</li>
+              </ul>
+            </div>
+          
+            <div class="random-codes">
+              <ul>
+                <li>97140.59</li>
+                <li>S4XX.A</li>
+                <li>M213.4</li>
+              </ul>
+            </div>
+      </div>
+
+
+
     
-    <div id="status-panel">
-      		<div class="state-boxes">
+      <div id="status-panel">
+
+
+       <div id="timer-controls-container">      		
+       <div class="state-boxes">
       			<p>SET</p>
       		</div>
-      		<div class="state-boxes">
+      		
+          <div class="state-boxes">
       			<p>TIMER</p>
       		</div>
+         
           <div class="circle-meter"></div>
 
           <div class="state-boxes">
             <p>SET</p>
           </div>
+          
           <div class="state-boxes">
             <p>BREAK TIMER</p>
           </div>
 
           <div class="circle-meter"></div>
-          <div class="state-boxes">
+
+
+        <!-- Eye Candy -->
+<!--           <div class="state-boxes">
             <p>NOMINAL</p>
+          </div> -->
+
+          <div class="clear-fix">
+            
           </div>
 
-          <div class="clear-fix"></div>
-          
           <div id="pomodoro-timer" class="timer-controls">
             <p id="pomodoro-plus">+</p>
             <p id="pomodoro-minus">-</p>
           </div>
+          </div> <!-- /end timer controls container -->
 
 
-             <div class="sp-mini-boxes">
-             	 <ul>
-             	 	<li><p>4D</p></li>
-             	 	<li><p>3D</p></li>
-             	 	<li><p>2D</p></li>
-             	 </ul>
-         
-         
-        
-      </div>
+
+
+      </div>      <!-- /end status panel -->
+
+          <div id="mini-boxes-container">
+              <div class="sp-mini-boxes">
+                   <ul>
+                      <li><p>4D</p></li>
+                      <li><p>3D</p></li>
+                      <li><p>2D</p></li>
+                   </ul>
+              </div>
+
+          </div> <!-- /end mini boxes container -->
       
-    </div>
+   
 
-  </div>
-  <!-- End Top Panel   -->
+
+
+      </div>  <!-- End Top Panel   -->
+ 
 
   <div class="clear-fix">
   </div>
+
+
   <div id="event-clock-container">
     
 
@@ -180,8 +224,9 @@
 <!-- End event clock container     -->
   </div>
 </div>
-	
 
+	
+</div> <!-- /end container -->
   <script src="js/main.js"></script>
 </body>
 </html>

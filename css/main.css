@@ -4,16 +4,22 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+
+
+
+.container-meter {
+  width: 100%;
+}
+
 .top-bar-common {
   height: 12px;
   margin: 5px;
   float: left;
 
+
 }
 #top-bar {
-  width: 90%;
- 
-/*   background-color: #102839; */
+  width: 85%;
   
   
 }
@@ -25,12 +31,14 @@ body {
 #top-bar-middle {
   width: 5%;
   background-color: #4f8d9a;
+
   
 }
 
 #top-bar-right {
   
-   width: 2%;
+   width: 1%;
+
  
   background-color: #6b9251;
   
@@ -56,10 +64,11 @@ body {
   border-style: solid; 
   border-color: #143a59;
   overflow: auto;
+  width: 99%;
 }
 
 #admin-bar {
-  width: 80%;
+  width: 75%;
   height: 12px;
   margin: 8px;
   float: left;
@@ -75,7 +84,7 @@ body {
 }
 
 #admin-label {
-  font-size: .8em;
+  font-size: .5em;
 /*   color: white; */
   color: #143a59;
   float:left;
@@ -83,52 +92,50 @@ body {
 
 .green-boxes {
   height: 12px;
-  width: 13px;
+  /*width: 13px;*/
+  width: 1%;
   margin: 15px 4px;
   
   float: right;
 }
 #top-panel {
-   height: 300px;
-   width: 80%;
-/*    background-color: white; */
+   height: auto;
+   width: 85%;
    float: right;
+   
 }
 
 #event-clock-container {
+  margin-top: 20px;
   float: right;
+}
+
+#codes {
+
+  display: none;
+
 }
 
 .random-codes {
   color: blue;
   float: right;
-   margin-right: 10px;
+  margin-right: 10px;
+
 /*   background-color:white; */
 }
 
 #status-panel {
   /*background-color: white;*/
-  width: 65%;
+  width: 55%;
   height: 100px;
   float: right;
-  margin-right: 40px;
+
   color: #6482a5;
+
+
 }
 
-/*.sp-mini-boxes {
-    border: 2px solid #6482a5;
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-    text-align: center;
-    vertical-align: middle;
-    float: right;
-    font-size: .5em;
- 
-    
-    
 
-}*/
 
 .state-boxes {
     border: 1px solid #6482a5;
@@ -163,6 +170,19 @@ body {
 
     }
 
+#pomodoro-timer {
+  float: left;
+}
+
+#mini-boxes-container {
+  display: none;
+
+}
+
+.sp-mini-boxes {
+  /*float: right;*/
+}
+
 
     .sp-mini-boxes ul {
       margin-top: 0;
@@ -178,6 +198,7 @@ body {
     .timer-controls p {
       font-size: 1.5em;
       margin-left: 50px;
+      margin-top: 0;
     }
 
 
@@ -202,6 +223,11 @@ body {
   border: 1px solid #6482a5;
 }
 
+
+#codes {
+  float: right;
+}
+
 .random-codes li {
   list-style: none;
   color: #143a59;
@@ -218,7 +244,8 @@ body {
 }
 
 #event-clock-container {
-  margin-top: -250px;
+ /* margin-top: -250px;*/
+ margin-right: 10px;
 }
 
 #event-clock-label {
@@ -270,9 +297,9 @@ body {
 }
 
 
-.test-div {
+/*.test-div {
   margin: 10px;
-}
+}*/
 
 .button {
   height: 40px;
@@ -330,7 +357,7 @@ body {
 #button-panel {
   height: 290px;
   width: 250px;
-/*   background-color: red; */
+
   float: right;
 }
 
@@ -347,4 +374,185 @@ body {
 
 }
 
-/* MEDIA QUERIES*/
+
+
+
+/* Flexible Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.clear-fix {
+  clear: both;
+}
+
+
+/*  FLUID GRIDS */
+.row {
+  float: left;
+  clear: both;
+  width: 100%;
+}
+
+.container .columns{
+  float: left;
+  padding-right: 1em;
+  padding-left: 1em;
+  
+  /*background: /*tomato*/;*/
+
+}
+
+
+    .container .columns.one,    
+    .container .columns.two,    
+    .container .columns.three,    
+    .container .columns.four,     
+    .container .columns.five,     
+    .container .columns.six,    
+    .container .columns.seven,    
+    .container .columns.eight,    
+    .container .columns.nine,     
+    .container .columns.ten,    
+    .container .columns.eleven,     
+    .container .columns.twelve,   
+    .container .columns.thirteen,   
+    .container .columns.fourteen,   
+    .container .columns.fifteen,   
+    .container .columns.sixteen   { width: 100%;  }
+
+.container {
+  width: 100%;
+}
+
+.clearfix:after,
+.container:after {
+  content: '';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  clear: both;
+}
+
+.clearfix,
+.container {
+  zoom: 1;
+}
+
+
+
+/* MEDIA QUERIES */
+
+@media only screen and (min-width: 582px) {
+  
+  #admin-bar {
+      width: 68%;
+  }
+
+}
+
+@media only screen and (min-width: 784px) {
+
+  #top-bar {
+      width: 90%;
+  
+  
+  }
+
+
+
+
+
+    .container .columns.one     { width: 6.25%; }
+    .container .columns.two     { width: 12.5%; }
+    .container .columns.three   { width: 18.75%;  }
+    .container .columns.four    { width: 25%;   }
+    .container .columns.five    { width: 31.25%;  }
+    .container .columns.six     { width: 37.5%; }
+    .container .columns.seven   { width: 43.75%;  }
+    .container .columns.eight   { width: 50%;   }
+    .container .columns.nine    { width: 56.25%;  }
+    .container .columns.ten     { width: 62.5%; }
+    .container .columns.eleven    { width: 68.75%;  }
+    .container .columns.twelve    { width: 75%;   }
+    .container .columns.thirteen  { width: 81.25%;  }
+    .container .columns.fourteen  { width: 87.5%; }
+    .container .columns.fifteen  { width: 93.75%;  }
+    .container .columns.sixteen   { width: 100%;  }
+
+
+
+}
+
+
+@media only screen and (min-width: 1003px) {
+
+     #admin-bar {
+        width: 70%;
+
+        
+      }
+      #admin-label {
+        font-size: 0.6em;
+      }
+}
+
+
+@media only screen and (min-width: 1010px) {
+
+      #admin-bar {
+        width: 75%;
+
+        
+      }
+
+
+      #admin-label {
+        font-size: 0.7em;
+      }
+
+
+}
+
+
+@media only screen and (min-width: 1136px) {
+      
+      #codes {
+        float: right;
+        width: 35%;
+        height: auto;
+        display: inline;
+      }
+
+      #mini-boxes-container {
+        float: right;
+        padding-left: 10px;
+
+        color: #6482a5;
+        display: inline;
+
+      }
+
+      #status-panel {
+        float: left;
+      }
+}
+
+@media only screen and (min-width: 1239px) {
+    
+      #admin-bar {
+        width: 80%;
+        
+      }
+
+      #admin-label {
+        font-size: 0.7em;
+      }
+
+
+
+
+}

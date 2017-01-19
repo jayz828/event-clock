@@ -13,7 +13,15 @@
 		};
 
 		this.minusTime = function() {
+			minutes +=-1;
+	
+			if (minutes < 10 ) {
+				secondsId.innerHTML = "0" + minutes;
 
+			} else {
+				secondsId.innerHTML = minutes;
+			}
+			
 		};
 
 		
