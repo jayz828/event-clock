@@ -84,17 +84,13 @@ body {
 }
 
 #admin-label {
-  font-size: .5em;
-/*   color: white; */
-  color: #143a59;
-  float:left;
+  display: none;
 }
 
 .green-boxes {
   height: 12px;
-  /*width: 13px;*/
   width: 1%;
-  margin: 15px 4px;
+  margin: 15px 2px;
   
   float: right;
 }
@@ -124,11 +120,7 @@ body {
 
 #status-panel {
   /*background-color: white;*/
-  width: 55%;
-  height: 100px;
-  float: right;
-
-  color: #6482a5;
+  display: none;
 
 
 }
@@ -168,9 +160,27 @@ body {
 
     }
 
-#pomodoro-timer {
-  float: left;
+
+
+#break-con {
+  position: relative;
+  left: 80px;
 }
+
+/*#timer-controls-container {
+  border: 5px solid red;
+
+}
+
+
+#pomodoro-timer {
+  border: 5px solid red;
+}
+*/
+
+
+
+
 
 #mini-boxes-container {
   display: none;
@@ -195,8 +205,12 @@ body {
 
     .timer-controls p {
       font-size: 1.5em;
-      margin-left: 50px;
+      margin-left: 40px;
+      text-align: center;
       margin-top: 0;
+
+      float: left;
+
     }
 
 
@@ -276,8 +290,8 @@ body {
 
 #event-clock-timer {
   /*padding: 10px;*/
-  width: 100%;
-  height: 190px;
+  width: 70%;
+  height: 170px;
   background-color: #030719;
   float: right;
   border: 2px solid #00e415;
@@ -315,7 +329,7 @@ body {
 
 .button {
   height: 40px;
-  width: 100px;
+  width: 50px;
   float: right;
   padding:0;
 
@@ -352,7 +366,8 @@ body {
 #event-clock-timer-value {
   float: left;
   /*font-size: 100px;*/
-  font-size: 1.5em;
+/*  font-size: 1.5em;*/
+  font-size: 1em;
   line-height: 180px;
   font-family: Roboto;
 }
@@ -368,14 +383,19 @@ body {
 }
 
   #break-timer p {
-    font-size: 0.75em;
+    font-size: 0.5em;
   }
 
-#button-panel {
-  height: auto;
-  width: 30%;
+#break-con {
+  margin-left: 100px;
+}
 
-  float: right;
+#button-panel {
+  display: none;
+/*  position: absolute;
+  right: 200px;
+  border: 5px solid red;*/
+
 
 }
 
@@ -390,6 +410,21 @@ body {
 #pom-meter {
   letter-spacing: 10px;
   padding-bottom: 0;
+
+
+}
+
+
+#mobile-controls p {
+  color: white;
+  font-size: 1em;
+}
+
+#mobile-controls li {
+  display: inline;
+  float: left;
+
+  margin-right: 30px;
 
 }
 
@@ -465,15 +500,52 @@ img {
 
 /* MEDIA QUERIES */
 
-@media only screen and (min-width: 582px) {
+@media only screen and (min-width: 588px) {
+      .button {
+    
+        width: 100px;
+
+      }
+
   
   #admin-bar {
       width: 68%;
   }
 
+
+  #admin-label {
+    display: block;
+    font-size: .5em;
+    color: #143a59;
+    float:left;
+  }
+
+
+  #button-panel {
+    display: block;
+    height: auto;
+    width: 30%;
+
+    float: right;
+
+  }
+
+
 }
 
 @media only screen and (min-width: 784px) {
+
+      #event-clock-timer-value {
+     
+      
+        font-size: 1em;
+
+      }
+
+      #break-timer p {
+        font-size: 0.5em;
+      }
+
 
   #top-bar {
       width: 90%;
@@ -522,9 +594,6 @@ img {
     
         width: 200px;
 
-       
-
-        
       }
 
       .button-text {
@@ -535,12 +604,29 @@ img {
       #event-clock-label {
        
         font-size: 50px;
-
-
-        
-
-        
       }
+
+      #event-clock-timer {
+        width: 100%;
+      }
+
+
+    #status-panel {
+      display: block;
+      width: 55%;
+      height: 100px;
+      float: right;
+
+      color: #6482a5;
+
+
+    }
+
+
+
+
+
+
 
 
 }
@@ -557,6 +643,18 @@ img {
 
       #admin-label {
         font-size: 0.7em;
+
+      }
+
+      #event-clock-timer-value {
+     
+      
+        font-size: 1.75em;
+
+      }
+
+      #break-timer p {
+        font-size: 0.75em;
       }
 
 
