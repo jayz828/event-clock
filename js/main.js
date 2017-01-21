@@ -9,17 +9,17 @@
 		this.addTime = function() {
 			
 			minutes +=1;
-			secondsId.innerHTML = minutes;
+			minutesId.innerHTML = minutes;
 		};
 
 		this.minusTime = function() {
 			minutes +=-1;
 	
 			if (minutes < 10 ) {
-				secondsId.innerHTML = "0" + minutes;
+				minutesId.innerHTML = "0" + minutes;
 
 			} else {
-				secondsId.innerHTML = minutes;
+				minutesId.innerHTML = minutes;
 			}
 			
 		};
@@ -41,6 +41,139 @@
 		this.setSeconds = function(newSeconds) {
 			seconds = newSeconds;
 		};
+
+		var testMethod = function() {
+			alert('test method');
+		};
+
+
+		var increment = function() {
+
+				var pageSeconds = document.getElementById("seconds");
+				var pageMinutes = document.getElementById("minutes");
+
+				// Seconds count down timer
+
+				if (seconds == 00) {
+					seconds = 60;
+					minutes = minutes - 1;
+
+					console.log(minutes);
+					console.log(seconds);	
+
+				if (minutes < 10 ) {
+						pageMinutes.innerHTML = "0" + minutes;
+					} else {
+						pageMinutes.innerHTML = minutes;
+					}
+
+				} 
+
+			
+				seconds = seconds - 1;
+
+				// If seonds values is less than to adds an extra 0 to display properly
+
+
+				if (seconds < 10) {
+
+					pageSeconds.innerHTML = "0" + seconds;
+					
+				} else {
+					pageSeconds.innerHTML = seconds;
+				
+				}
+
+
+
+
+				if ((minutes == 0) && (seconds == 0)) {
+					stopTimer();
+				}
+
+
+				// pageMinutes.innerHTML = pomodoro.minutes;
+
+
+
+
+
+
+
+		};
+
+		this.startTimer = function() {
+
+
+				status = "on";
+
+
+				// Gives the start button an effect that it turned off 
+
+				changeButtonStatus("start-button", "start-text", "#1a280b");
+
+
+
+				// Light up stop button
+
+				changeButtonStatus("stop-button", "stop-text", "#da0109");
+
+		
+			
+				// timer increment
+				var timer = setInterval(function() {
+					increment();
+
+				if (status == "off") {
+
+					clearInterval(timer);
+
+
+					}
+				}, 1000);
+
+
+
+				};
+
+		var stopTimer = function() {
+
+				status = "off";
+
+				// Gives the start button an effect that it turned off 
+
+				changeButtonStatus("start-button", "start-text", "#00e415");
+
+
+
+				// Light up stop button
+
+				changeButtonStatus("stop-button", "stop-text", "#350c1f");
+
+		};
+
+			// This method is supposed to execute an internal method
+			// Tried passing the parameter but am getting an error.  
+			// For now will try passing in a number that will execute the matched method.
+		this.executeMethod = function(funcNo) {
+
+				if (funcNo == 1) {
+					stopTimer();
+				} else {
+					resetTimer();
+				}
+				
+		};
+
+		var resetTimer = function() {
+				minutes = 25;
+				seconds = 0;
+
+				minutesId.innerHTML = minutes;
+				secondsId.innerHTML = seconds + "0";
+
+		};
+
 
 
 
@@ -78,10 +211,12 @@
 
 
 
+
 	var pomodoroPlus = document.getElementById("pomodoro-plus");
 	var pomodoroMinus = document.getElementById("pomodoro-minus");
 
-	var secondsId = document.getElementById("minutes");
+	var minutesId = document.getElementById("minutes");
+	var secondsId = document.getElementById("seconds");
 
 	var timerStatus = "off";
 	var currentMinutes = document.getElementById("minutes").innerHTML;
@@ -89,8 +224,26 @@
 
 	var pomodoro = new Timer(currentMinutes, currentSeconds, timerStatus);
 
+
+
+
 	pomodoroPlus.addEventListener("click", pomodoro.addTime);
 	pomodoroMinus.addEventListener("click", pomodoro.minusTime);
+
+
+
+	var startButton = document.getElementById("start-button");
+	var stopButton = document.getElementById("stop-button");
+	var resetButton = document.getElementById("reset-button");
+
+	startButton.addEventListener("click", pomodoro.startTimer);
+	stopButton.addEventListener("click", function() {
+		pomodoro.executeMethod(1);
+	});
+	resetButton.addEventListener("click", function() {
+		pomodoro.executeMethod(2);
+	});
+
 
 	// alert(pomodoro.getMinutes());
 
@@ -171,13 +324,13 @@ window.onload = function() {
 
 	// Event listeners
 
-	var startButton = document.getElementById("start-button");
-	var stopButton = document.getElementById("stop-button");
-	var resetButton = document.getElementById("reset-button");
+	// var startButton = document.getElementById("start-button");
+	// var stopButton = document.getElementById("stop-button");
+	// var resetButton = document.getElementById("reset-button");
 
-	startButton.addEventListener("click", start);
-	stopButton.addEventListener("click", stop);
-	resetButton.addEventListener("click", reset);
+	// startButton.addEventListener("click", pomodoro.startTimer);
+	// stopButton.addEventListener("click", stop);
+	// resetButton.addEventListener("click", reset);
 
 
 
@@ -205,126 +358,125 @@ function changeButtonStatus(button, text, color) {
 
 
 
-function start() {
+// function start() {
 
-	pomodoro.status = "on";
-
-
-
-
-	// console.log(pomodoro.getMinutes());
-
-
-	// Gives the start button an effect that it turned off 
-
-	changeButtonStatus("start-button", "start-text", "#1a280b");
-
-
-
-	// Light up stop button
-
-	changeButtonStatus("stop-button", "stop-text", "#da0109");
-
-	
-
-	// timer increment
-	var timer = setInterval(function() {
-		increment();
-
-	if (pomodoro.status == "off") {
-
-		clearInterval(timer);
-
-
-		}
-	}, 1000);
+// 	pomodoro.status = "on";
 
 
 
 
+
+
+// 	// Gives the start button an effect that it turned off 
+
+// 	changeButtonStatus("start-button", "start-text", "#1a280b");
+
+
+
+// 	// Light up stop button
+
+// 	changeButtonStatus("stop-button", "stop-text", "#da0109");
 
 	
-}
 
-function increment() {
+// 	// timer increment
+// 	var timer = setInterval(function() {
+// 		increment();
+
+// 	if (pomodoro.status == "off") {
+
+// 		clearInterval(timer);
+
+
+// 		}
+// 	}, 1000);
 
 
 
 
-		var pageSeconds = document.getElementById("seconds");
-		var pageMinutes = document.getElementById("minutes");
-
-		// Seconds count down timer
-
-		if (pomodoro.getSeconds() == 00) {
-			pomodoro.setSeconds(60);
-			pomodoro.setMinutes(pomodoro.getMinutes() - 1);
-
-			console.log(pomodoro.getMinutes());
-			console.log(pomodoro.getSeconds());	
-
-		if (pomodoro.getMinutes() < 10 ) {
-				pageMinutes.innerHTML = "0" + pomodoro.getMinutes();
-			} else {
-				pageMinutes.innerHTML = pomodoro.getMinutes();
-			}
-
-		} 
 
 	
-		pomodoro.setSeconds(pomodoro.getSeconds() - 1);
+// }
 
-		// If seonds values is less than to adds an extra 0 to display properly
+// function increment() {
 
 
-		if (pomodoro.getSeconds() < 10) {
 
-			pageSeconds.innerHTML = "0" + pomodoro.getSeconds();
+
+// 		var pageSeconds = document.getElementById("seconds");
+// 		var pageMinutes = document.getElementById("minutes");
+
+// 		// Seconds count down timer
+
+// 		if (pomodoro.getSeconds() == 00) {
+// 			pomodoro.setSeconds(60);
+// 			pomodoro.setMinutes(pomodoro.getMinutes() - 1);
+
+// 			console.log(pomodoro.getMinutes());
+// 			console.log(pomodoro.getSeconds());	
+
+// 		if (pomodoro.getMinutes() < 10 ) {
+// 				pageMinutes.innerHTML = "0" + pomodoro.getMinutes();
+// 			} else {
+// 				pageMinutes.innerHTML = pomodoro.getMinutes();
+// 			}
+
+// 		} 
+
+	
+// 		pomodoro.setSeconds(pomodoro.getSeconds() - 1);
+
+// 		// If seonds values is less than to adds an extra 0 to display properly
+
+
+// 		if (pomodoro.getSeconds() < 10) {
+
+// 			pageSeconds.innerHTML = "0" + pomodoro.getSeconds();
 			
-		} else {
-			pageSeconds.innerHTML = pomodoro.getSeconds();
+// 		} else {
+// 			pageSeconds.innerHTML = pomodoro.getSeconds();
 		
-		}
+// 		}
 
 
 
 
-		if ((pomodoro.getMinutes() == 0) && (pomodoro.getSeconds == 0)) {
-			stop();
-		}
+// 		if ((pomodoro.getMinutes() == 0) && (pomodoro.getSeconds == 0)) {
+// 			stop();
+// 		}
 
 
-		// pageMinutes.innerHTML = pomodoro.minutes;
-
-
-
-
-
-}
-
-function stop() {
-
-	pomodoro.status = "off";
-
-	// Gives the start button an effect that it turned off 
-
-	changeButtonStatus("start-button", "start-text", "#00e415");
+// 		// pageMinutes.innerHTML = pomodoro.minutes;
 
 
 
-	// Light up stop button
-
-	changeButtonStatus("stop-button", "stop-text", "#350c1f");
 
 
-}
+// }
+
+// function stop() {
+
+// 	pomodoro.status = "off";
+
+// 	// Gives the start button an effect that it turned off 
+
+// 	changeButtonStatus("start-button", "start-text", "#00e415");
 
 
-function reset() {
-	pomodoro.minutes = 25;
-	pomodoro.seconds = 1;
-	// pomodoro.status = "off";
-}
+
+// 	// Light up stop button
+
+// 	changeButtonStatus("stop-button", "stop-text", "#350c1f");
+
+
+// }
+
+
+// function reset() {
+// 	pomodoro.minutes = 25;
+// 	pomodoro.seconds = 1;
+// 	// pomodoro.status = "off";
+// }
 
 
 
