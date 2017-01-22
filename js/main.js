@@ -1,26 +1,68 @@
 
 	// Timer object
 
-	function Timer(currentMinutes, currentSeconds, setStatus) {
+	function Timer(currentMinutes, currentSeconds, setStatus, minutesElement, secondsElement) {
+		
+		// Values received from current time on page
 		var minutes = parseInt(currentMinutes);
 		var seconds = parseInt(currentSeconds);
+
+		// var pageSeconds = document.getElementById("seconds");
+		// var pageMinutes = document.getElementById("minutes");
+
+
+		var pageSeconds = document.getElementById(secondsElement);
+		var pageMinutes = document.getElementById(minutesElement);
 		var status = setStatus;
 
 		this.addTime = function() {
 			
+			// minutes +=1;
+			// minutesId.innerHTML = minutes;
+
+
+
+
+
 			minutes +=1;
-			minutesId.innerHTML = minutes;
+			// pageMinutes.innerHTML = minutes;
+
+
+			if (minutes < 10 ) {
+				pageMinutes.innerHTML = "0" + minutes;
+
+			} else {
+				pageMinutes.innerHTML = minutes;
+			}
+
+
+
+
 		};
 
 		this.minusTime = function() {
-			minutes +=-1;
+			// minutes +=-1;
 	
-			if (minutes < 10 ) {
-				minutesId.innerHTML = "0" + minutes;
+			// if (minutes < 10 ) {
+			// 	minutesId.innerHTML = "0" + minutes;
 
-			} else {
-				minutesId.innerHTML = minutes;
-			}
+			// } else {
+			// 	minutesId.innerHTML = minutes;
+			// }
+
+
+
+			if (minutes !=0) {
+					minutes +=-1;
+			
+					if (minutes < 10 ) {
+						pageMinutes.innerHTML = "0" + minutes;
+
+					} else {
+						pageMinutes.innerHTML = minutes;
+					}
+			}	
+			
 			
 		};
 
@@ -49,8 +91,11 @@
 
 		var increment = function() {
 
-				var pageSeconds = document.getElementById("seconds");
-				var pageMinutes = document.getElementById("minutes");
+
+
+
+
+
 
 				// Seconds count down timer
 
@@ -212,24 +257,61 @@
 
 
 
+
+	// Pomodoro Timer Controls
 	var pomodoroPlus = document.getElementById("pomodoro-plus");
 	var pomodoroMinus = document.getElementById("pomodoro-minus");
 
+	// Break Timer Controls
+	var breakPlus = document.getElementById("break-plus");
+	var breakMinus = document.getElementById("break-minus");
+
+
+
+
+
+	// var currentMinutes = document.getElementById("minutes").innerHTML;
+	// var currentSeconds = document.getElementById("seconds").innerHTML;
+
+
+	// Get current values for Main Timer
 	var minutesId = document.getElementById("minutes");
 	var secondsId = document.getElementById("seconds");
-
 	var timerStatus = "off";
-	var currentMinutes = document.getElementById("minutes").innerHTML;
-	var currentSeconds = document.getElementById("seconds").innerHTML;
-
-	var pomodoro = new Timer(currentMinutes, currentSeconds, timerStatus);
+	var currentMinutes = minutesId.innerHTML;
+	var currentSeconds = secondsId.innerHTML;
 
 
 
+	// Create Main Timer Object
+	var pomodoro = new Timer(currentMinutes, currentSeconds, timerStatus, "minutes", "seconds");
 
+
+
+	// Get current values for Break Timer
+	var breakMinutesId = document.getElementById("break-minutes");
+	var breakSecondsId = document.getElementById("break-seconds");
+	var breakTimerStatus = "off";
+
+	var breakMinutes = breakMinutesId.innerHTML;
+	var breakSeconds = breakSecondsId.innerHTML;
+
+
+	// Create Break Timer Object
+
+	var breakTimer = new Timer(breakMinutes, breakSeconds, breakTimerStatus,"break-minutes", "break-seconds");
+
+
+
+
+	// Main Timer controls Event Listeners
 	pomodoroPlus.addEventListener("click", pomodoro.addTime);
 	pomodoroMinus.addEventListener("click", pomodoro.minusTime);
 
+	// Break Timer Controls
+
+	breakPlus.addEventListener("click", breakTimer.addTime);
+	breakMinus.addEventListener("click", breakTimer.minusTime);
 
 
 	var startButton = document.getElementById("start-button");
@@ -320,8 +402,6 @@ window.onload = function() {
 
 
 
-
-
 	// Event listeners
 
 	// var startButton = document.getElementById("start-button");
@@ -331,15 +411,6 @@ window.onload = function() {
 	// startButton.addEventListener("click", pomodoro.startTimer);
 	// stopButton.addEventListener("click", stop);
 	// resetButton.addEventListener("click", reset);
-
-
-
-
-
-	
-
-
-
 
 };
 

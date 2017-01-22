@@ -384,6 +384,7 @@ body {
 
   #break-timer p {
     font-size: 0.5em;
+    display: inline;
   }
 
 #break-con {
