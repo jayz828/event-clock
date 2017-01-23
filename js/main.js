@@ -20,20 +20,22 @@
 			// minutes +=1;
 			// minutesId.innerHTML = minutes;
 
+			console.log(minutes);
 
-
-
+			// console.log(breakTimer.status);
 
 			minutes +=1;
 			// pageMinutes.innerHTML = minutes;
 
 
-			if (minutes < 10 ) {
-				pageMinutes.innerHTML = "0" + minutes;
 
-			} else {
-				pageMinutes.innerHTML = minutes;
-			}
+			belowTen();
+			// if (minutes < 10 ) {
+			// 	pageMinutes.innerHTML = "0" + minutes;
+
+			// } else {
+			// 	pageMinutes.innerHTML = minutes;
+			// }
 
 
 
@@ -41,7 +43,7 @@
 		};
 
 		this.minusTime = function() {
-			// minutes +=-1;
+			minutes +=-1;
 	
 			// if (minutes < 10 ) {
 			// 	minutesId.innerHTML = "0" + minutes;
@@ -50,18 +52,20 @@
 			// 	minutesId.innerHTML = minutes;
 			// }
 
+			// belowTen(minutes, pageMinutes);
 
+			belowTen();
 
-			if (minutes !=0) {
-					minutes +=-1;
+			// if (minutes !=0) {
+			// 		minutes +=-1;
 			
-					if (minutes < 10 ) {
-						pageMinutes.innerHTML = "0" + minutes;
+			// 		if (minutes < 10 ) {
+			// 			pageMinutes.innerHTML = "0" + minutes;
 
-					} else {
-						pageMinutes.innerHTML = minutes;
-					}
-			}	
+			// 		} else {
+			// 			pageMinutes.innerHTML = minutes;
+			// 		}
+			// }	
 			
 			
 		};
@@ -86,6 +90,13 @@
 
 		var testMethod = function() {
 			alert('test method');
+		};
+
+		this.getStatus = function() {
+			return status;
+		};
+		this.setStatus = function(newStatus) {
+			status = newStatus;
 		};
 
 
@@ -134,6 +145,7 @@
 
 				if ((minutes == 0) && (seconds == 0)) {
 					stopTimer();
+					startBreakTimer();
 				}
 
 
@@ -149,7 +161,14 @@
 
 		this.startTimer = function() {
 
+			if ((minutes == 0) && (seconds == 0)) {
 
+				stopTimer();
+
+
+
+				
+			} else {
 				status = "on";
 
 
@@ -173,17 +192,26 @@
 
 					clearInterval(timer);
 
-
-					}
+				}
+					// } else if((status == "off") && (minutes == 0) && (seconds == 0)) {
+					// 	breakTimer.startTimer();
+					// }
 				}, 1000);
+			}
 
-
-
-				};
+		};
 
 		var stopTimer = function() {
 
+				
+				// if ((minutes == 0) && (seconds == 0))
+				// {
+				// 	breakTimer.startTimer();
+				// } else {
+
+
 				status = "off";
+
 
 				// Gives the start button an effect that it turned off 
 
@@ -194,6 +222,23 @@
 				// Light up stop button
 
 				changeButtonStatus("stop-button", "stop-text", "#350c1f");
+
+
+
+
+				// }
+
+
+
+				
+
+
+
+
+
+				
+
+
 
 		};
 
@@ -216,6 +261,19 @@
 
 				minutesId.innerHTML = minutes;
 				secondsId.innerHTML = seconds + "0";
+
+		};
+
+		var belowTen = function() {
+
+				
+
+				if (minutes < 10 ) {
+					pageMinutes.innerHTML = "0" + minutes;
+
+				} else {
+					pageMinutes.innerHTML = minutes;
+				}
 
 		};
 
@@ -287,7 +345,6 @@
 	var pomodoro = new Timer(currentMinutes, currentSeconds, timerStatus, "minutes", "seconds");
 
 
-
 	// Get current values for Break Timer
 	var breakMinutesId = document.getElementById("break-minutes");
 	var breakSecondsId = document.getElementById("break-seconds");
@@ -340,8 +397,21 @@
 	// };
 
 
+// alert(pomodoro.constructor.name);
+
+function startBreakTimer() {
 
 
+	breakTimer.startTimer();
+	console.log("pomodoro timer" + pomodoro.getStatus());
+
+	breakTimer.setStatus("on");
+
+	console.log("break timer" + breakTimer.getStatus());
+
+
+
+}
 
 
 
