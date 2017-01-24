@@ -8,6 +8,13 @@
 		var seconds = parseInt(currentSeconds);
 		var timerType = timerName;
 		var status = "off";
+		var completed = false;
+
+		// Variable will get the number of minutes timer started
+		var startMinutes = minutes;
+
+
+	
 
 		// var pageSeconds = document.getElementById("seconds");
 		// var pageMinutes = document.getElementById("minutes");
@@ -21,12 +28,11 @@
 			
 
 
-			console.log(minutes);
 
 
 			minutes +=1;
 
-
+			startMinutes = minutes;
 
 			belowTen();
 
@@ -40,6 +46,7 @@
 			minutes +=-1;
 	
 
+			startMintues = minutes;
 
 			belowTen();
 
@@ -125,6 +132,10 @@
 					stopTimer();
 					// startBreakTimer();
 					// runningTimer = "break";
+
+					timerCounter +=1;
+					alert(startMinutes);
+					nextTimer();
 				}
 
 
@@ -168,9 +179,11 @@
 				var timer = setInterval(function() {
 					increment();
 
-				if (status == "off") {
+				if (status == "off"){
+
 
 					clearInterval(timer);
+
 
 				}
 					// } else if((status == "off") && (minutes == 0) && (seconds == 0)) {
@@ -183,6 +196,8 @@
 
 		var stopTimer = function() {
 
+			console.log(minutes);
+			console.log(seconds);
 				
 				// if ((timerType = "pomodoro")  && (minutes == 0) && (seconds == 0))
 				// {
@@ -190,6 +205,8 @@
 				// }
 
 				status = "off";
+				console.log(breakTimer.getStatus());
+				// console.log(pomodoro.getStatus());
 
 
 				// Gives the start button an effect that it turned off 
@@ -202,8 +219,9 @@
 
 				changeButtonStatus("stop-button", "stop-text", "#350c1f");
 
-			
-				nextTimer();
+				
+
+				// nextTimer();
 
 
 
@@ -259,6 +277,12 @@
 	// var numberOfTimers[];
 
 
+	// Use this counter to track which timer is running
+	// Even Number is pomodoro
+	// Odd Number is break timer
+	var timerCounter = 0;
+
+
 
 
 	// Pomodoro Timer Controls
@@ -305,6 +329,14 @@
 
 
 
+	// var timersArray = [];
+
+	// timersArray.push(pomodoro);
+	// timersArray.push(breakTimer);
+
+	// // timersArray[0].startTimer();
+	// timersArray[1].startTimer();
+
 
 	// Main Timer controls Event Listeners
 	pomodoroPlus.addEventListener("click", pomodoro.addTime);
@@ -327,6 +359,8 @@
 	resetButton.addEventListener("click", function() {
 		pomodoro.executeMethod(2);
 	});
+
+
 
 
 	// alert(pomodoro.getMinutes());
@@ -383,15 +417,49 @@ function changeButtonStatus(button, text, color) {
 
 function nextTimer() {
 
+
+	if (timerCounter % 2 == 0 ) {
+
+		alert('pomodoro');
+
+	pomodoro.startTimer();
+
+	startButton.addEventListener("click", pomdoro.startTimer);
+	stopButton.addEventListener("click", function() {
+		pomodoro.executeMethod(1);
+	});
+	resetButton.addEventListener("click", function() {
+		pomodoro.executeMethod(2);
+	});
+
+
+
+	} else {
+
+		alert('break');
+
 	breakTimer.startTimer();
 
+	startButton.addEventListener("click", breakTimer.startTimer);
+	stopButton.addEventListener("click", function() {
+		breakTimer.executeMethod(1);
+	});
+	resetButton.addEventListener("click", function() {
+		breakTimer.executeMethod(2);
+	});
+	}
+
+
+
 }
 
 
-function mainApp() {
+(function(){
 
 
-}
+
+
+})();
 
 
 
