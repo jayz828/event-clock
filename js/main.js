@@ -34,6 +34,7 @@
 
 			startMinutes = minutes;
 
+
 			belowTen();
 
 
@@ -46,7 +47,8 @@
 			minutes +=-1;
 	
 
-			startMintues = minutes;
+			startMinutes = minutes;
+
 
 			belowTen();
 
@@ -71,6 +73,10 @@
 
 		this.setSeconds = function(newSeconds) {
 			seconds = newSeconds;
+		};
+
+		this.getStartMinutes = function() {
+			return startMinutes;
 		};
 
 		var testMethod = function() {
@@ -134,7 +140,7 @@
 					// runningTimer = "break";
 
 					timerCounter +=1;
-					alert(startMinutes);
+					// alert(startMinutes);
 					nextTimer();
 				}
 
@@ -417,14 +423,24 @@ function changeButtonStatus(button, text, color) {
 
 function nextTimer() {
 
+	// alert(pomodoro.getStartMinutes());
+
+	var pomMeter = document.getElementById("pom-meter");
+	var pomMeterStr = pomMeter.innerHTML;
+
+	console.log(pomMeterStr);
+	var pomMeterLength = pomMeterStr.length
+	console.log(pomMeterLength);
+
+
 
 	if (timerCounter % 2 == 0 ) {
 
-		alert('pomodoro');
+	console.log("minutes" + pomodoro.getMinutes());
 
 	pomodoro.startTimer();
 
-	startButton.addEventListener("click", pomdoro.startTimer);
+	startButton.addEventListener("click", pomodoro.startTimer);
 	stopButton.addEventListener("click", function() {
 		pomodoro.executeMethod(1);
 	});
@@ -436,7 +452,17 @@ function nextTimer() {
 
 	} else {
 
-		alert('break');
+
+
+	pomMeterStr = pomMeterStr.slice(1)
+	console.log('length' + pomMeterStr);
+	pomMeter.innerHTML = pomMeterStr;
+
+
+	// Get the minutes from when the timer first started and reset the timer to that time
+	pomodoro.setMinutes(pomodoro.getStartMinutes());
+	minutesId.innerHTML = pomodoro.getStartMinutes();
+
 
 	breakTimer.startTimer();
 
