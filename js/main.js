@@ -119,7 +119,7 @@
 			
 				seconds = seconds - 1;
 
-				// If seonds values is less than to adds an extra 0 to display properly
+				// If seconds values is less than to adds an extra 0 to display properly
 
 
 				if (seconds < 10) {
@@ -157,13 +157,24 @@
 
 		this.startTimer = function() {
 
-
+			console.log(minutes + " " + seconds);
 
 			if ((minutes == 0) && (seconds == 0)) {
 
-				stopTimer();
+
+				if (breakMinutesId.innerHTML == "30") {
+
+					pomodoroBreakTimer();
+				} else {
+
+					stopTimer();
+
+				}
 
 
+
+
+				
 				
 			} else {
 				status = "on";
@@ -435,16 +446,31 @@ function nextTimer() {
 	console.log(pomMeterLength);
 
 
-
+	console.log("timer counter "+ timerCounter);
 		if (timerCounter % 2 == 0 ) {
+
+
+
+
+			// Need to check visibility to set timer to 30 minutes
+
+			if (pomMeter.style.visibility == "hidden") {
+		    		breakTimer.setMinutes(30);
+		    		document.getElementById("break-minutes").innerHTML = 30;
+
+		    } else {
 
 
 			// Try to refactor this code since it is WET
 			// Get the minutes from when the timer first started and reset the timer to that time
+			
+
 			breakTimer.setMinutes(breakTimer.getStartMinutes());
 			breakMinutesId.innerHTML = "0" + breakTimer.getStartMinutes();
 
-			// console.log("minutes" + pomodoro.getMinutes());
+
+			}
+
 
 			pomodoro.startTimer();
 
@@ -458,16 +484,39 @@ function nextTimer() {
 
 
 
-			} else {
+			
+
+
+
+			} 
+
+			// else if (timerCounter == 9) {
+
+			// 	breakTimer.stopTimer();
+			// 	breakTimer.setMinutes(30);
+		 //  		document.getElementById("break-minutes").innerHTML = 30;
+		 //  		breakTimer.startTimer();
+
+			// }
+
+
+			else {
 
 
 
 
 		
 			if (pomMeterLength > 1) {
-			pomMeterStr = pomMeterStr.slice(1);
-			console.log('length' + pomMeterStr);
-			pomMeter.innerHTML = pomMeterStr;
+
+				pomMeterStr = pomMeterStr.slice(1);
+				console.log('length' + pomMeterStr);
+				pomMeter.innerHTML = pomMeterStr;
+
+
+				// Get the minutes from when the timer first started and reset the timer to that time
+				pomodoro.setMinutes(pomodoro.getStartMinutes());
+				minutesId.innerHTML = "0" + pomodoro.getStartMinutes();
+
 			} else {
 				pomMeter.style.visibility = "hidden";
 			}
@@ -476,12 +525,13 @@ function nextTimer() {
 				
 
 			/* WORK HERE TOMORROW TO FIX INFINITE LOOP OF TIMERS RUNNING*/
+			// No longer goes into an infinite loop
 
 
 
 			// Get the minutes from when the timer first started and reset the timer to that time
-			pomodoro.setMinutes(pomodoro.getStartMinutes());
-			minutesId.innerHTML = "0" + pomodoro.getStartMinutes();
+			// pomodoro.setMinutes(pomodoro.getStartMinutes());
+			// minutesId.innerHTML = "0" + pomodoro.getStartMinutes();
 
 
 			breakTimer.startTimer();
@@ -550,7 +600,11 @@ function nextTimer() {
 
 
 
-
+function pomodoroBreakTimer() {
+	breakTimer.executeMethod(1);
+	pomodoro.executeMethod(1);
+	// breakTimer.startTimer();	
+}
 
 
 (function(){
