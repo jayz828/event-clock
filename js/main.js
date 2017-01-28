@@ -139,9 +139,14 @@
 					// startBreakTimer();
 					// runningTimer = "break";
 
+					console.log(extendedTimerCounter);
+
 					timerCounter +=1;
 					// alert(startMinutes);
+
+
 					nextTimer();
+
 				}
 
 
@@ -158,21 +163,26 @@
 		this.startTimer = function() {
 
 			console.log(minutes + " " + seconds);
+			console.log(extendedTimerCounter);
 
 			if ((minutes == 0) && (seconds == 0)) {
 
 
-				if (breakMinutesId.innerHTML == "30") {
+				// if (breakMinutesId.innerHTML == "1") {
 
-					pomodoroBreakTimer();
-				} else {
+				// if (extendedTimerCounter == false) {	
 
-					stopTimer();
+				// 	pomodoroBreakTimer();
+				// } else {
 
-				}
+				// 	stopTimer();
+
+				// }
+
+				stopTimer();
 
 
-
+				// stopTimer();
 
 				
 				
@@ -222,7 +232,6 @@
 				// }
 
 				status = "off";
-				console.log(breakTimer.getStatus());
 				// console.log(pomodoro.getStatus());
 
 
@@ -346,6 +355,8 @@
 
 
 
+	var extendedTimer = new Timer(1, 0, "break-minutes", "break-seconds", "extended-break");
+
 	// var timersArray = [];
 
 	// timersArray.push(pomodoro);
@@ -434,20 +445,30 @@ function changeButtonStatus(button, text, color) {
 
 function nextTimer() {
 
+	console.log("timer Counter " + timerCounter);
 
-
-
+	alert('next timer');
 
 	var pomMeter = document.getElementById("pom-meter");
 	var pomMeterStr = pomMeter.innerHTML;
 
-	console.log(pomMeterStr);
 	var pomMeterLength = pomMeterStr.length
-	console.log(pomMeterLength);
 
 
 	console.log("timer counter "+ timerCounter);
-		if (timerCounter % 2 == 0 ) {
+		
+		if (timerCounter == 3) {
+
+
+			extendedTimer.executeMethod(1);
+		} else {
+
+
+
+			// start cut
+
+
+					if (timerCounter % 2 == 0 ) {
 
 
 
@@ -455,8 +476,9 @@ function nextTimer() {
 			// Need to check visibility to set timer to 30 minutes
 
 			if (pomMeter.style.visibility == "hidden") {
-		    		breakTimer.setMinutes(30);
-		    		document.getElementById("break-minutes").innerHTML = 30;
+		    		// breakTimer.setMinutes(1);
+		    		// document.getElementById("break-minutes").innerHTML = 1;
+		    		pomodoroBreakTimer();
 
 		    } else {
 
@@ -488,19 +510,7 @@ function nextTimer() {
 
 
 
-			} 
-
-			// else if (timerCounter == 9) {
-
-			// 	breakTimer.stopTimer();
-			// 	breakTimer.setMinutes(30);
-		 //  		document.getElementById("break-minutes").innerHTML = 30;
-		 //  		breakTimer.startTimer();
-
-			// }
-
-
-			else {
+			} else {
 
 
 
@@ -522,16 +532,6 @@ function nextTimer() {
 			}
 
 
-				
-
-			/* WORK HERE TOMORROW TO FIX INFINITE LOOP OF TIMERS RUNNING*/
-			// No longer goes into an infinite loop
-
-
-
-			// Get the minutes from when the timer first started and reset the timer to that time
-			// pomodoro.setMinutes(pomodoro.getStartMinutes());
-			// minutesId.innerHTML = "0" + pomodoro.getStartMinutes();
 
 
 			breakTimer.startTimer();
@@ -546,64 +546,56 @@ function nextTimer() {
 			}
 
 
+			// end cut
+
+
+
+
+
 
 		}
 
 
 
-	// if (timerCounter % 2 == 0 ) {
 
 
-	// // Try to refactor this code since it is WET
-	// // Get the minutes from when the timer first started and reset the timer to that time
-	// breakTimer.setMinutes(breakTimer.getStartMinutes());
-	// breakMinutesId.innerHTML = "0" + breakTimer.getStartMinutes();
-
-	// // console.log("minutes" + pomodoro.getMinutes());
-
-	// pomodoro.startTimer();
-
-	// startButton.addEventListener("click", pomodoro.startTimer);
-	// stopButton.addEventListener("click", function() {
-	// 	pomodoro.executeMethod(1);
-	// });
-	// resetButton.addEventListener("click", function() {
-	// 	pomodoro.executeMethod(2);
-	// });
+		}
 
 
 
-	// } else {
 
 
-
-	// pomMeterStr = pomMeterStr.slice(1)
-	// console.log('length' + pomMeterStr);
-	// pomMeter.innerHTML = pomMeterStr;
-
-
-	// // Get the minutes from when the timer first started and reset the timer to that time
-	// pomodoro.setMinutes(pomodoro.getStartMinutes());
-	// minutesId.innerHTML = "0" + pomodoro.getStartMinutes();
-
-
-	// breakTimer.startTimer();
-
-	// startButton.addEventListener("click", breakTimer.startTimer);
-	// stopButton.addEventListener("click", function() {
-	// 	breakTimer.executeMethod(1);
-	// });
-	// resetButton.addEventListener("click", function() {
-	// 	breakTimer.executeMethod(2);
-	// });
-	// }
-
+var extendedTimerCounter = false;
 
 
 function pomodoroBreakTimer() {
+	alert('this should start');
+
+	extendedTimerCounter = true;
+
+	// console.log(extendedTimerCounter);
+
 	breakTimer.executeMethod(1);
 	pomodoro.executeMethod(1);
 	// breakTimer.startTimer();	
+	breakMinutesId.innerHTML = extendedTimer.getMinutes();
+	breakSecondsId.innerHTML = extendedTimer.getSeconds() + "0";
+
+
+	extendedTimer.startTimer();
+
+
+	startButton.addEventListener("click", extendedTimer.startTimer);
+	stopButton.addEventListener("click", function() {
+		extendedTimer.executeMethod(1);
+	});
+	resetButton.addEventListener("click", function() {
+		extendedTimer.executeMethod(2);
+	});
+	
+
+
+
 }
 
 
