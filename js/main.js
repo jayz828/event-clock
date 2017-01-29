@@ -44,13 +44,29 @@
 		};
 
 		this.minusTime = function() {
-			minutes +=-1;
+			
+
+
+			minutes -=1;
 	
 
+			if (minutes < 1) {
+
+
+				minutes = 1;
+
+			} else {
+
 			startMinutes = minutes;
+	
+			}
 
 
+			// If minutes is below 10 add a zero to beginning.
 			belowTen();
+
+
+
 
 
 			
@@ -167,17 +183,7 @@
 
 			if ((minutes == 0) && (seconds == 0)) {
 
-
-				// if (breakMinutesId.innerHTML == "1") {
-
-				// if (extendedTimerCounter == false) {	
-
-				// 	pomodoroBreakTimer();
-				// } else {
-
-				// 	stopTimer();
-
-				// }
+				alert("stop timer");
 
 				stopTimer();
 
@@ -447,7 +453,7 @@ function nextTimer() {
 
 	console.log("timer Counter " + timerCounter);
 
-	alert('next timer');
+	console.log('next timer');
 
 	var pomMeter = document.getElementById("pom-meter");
 	var pomMeterStr = pomMeter.innerHTML;
@@ -457,28 +463,24 @@ function nextTimer() {
 
 	console.log("timer counter "+ timerCounter);
 		
-		if (timerCounter == 3) {
-
-
-			extendedTimer.executeMethod(1);
-		} else {
-
-
-
-			// start cut
-
-
-					if (timerCounter % 2 == 0 ) {
-
-
 
 
 			// Need to check visibility to set timer to 30 minutes
 
-			if (pomMeter.style.visibility == "hidden") {
+			if (pomMeterLength == 1) {
 		    		// breakTimer.setMinutes(1);
 		    		// document.getElementById("break-minutes").innerHTML = 1;
-		    		pomodoroBreakTimer();
+		    		// pomodoroBreakTimer();
+		 //    		alert('hidden');
+
+
+
+		 	// CALCULATE THE FINAL BREAK TIMER BY ADDING POMODORO AND BREAK TIMER
+
+		    breakTimer.setMinutes(30);
+			breakMinutesId.innerHTML = breakTimer.getMinutes();
+
+
 
 		    } else {
 
@@ -492,6 +494,17 @@ function nextTimer() {
 
 
 			}
+
+
+		
+
+
+		if (timerCounter % 2 == 0 ) {
+
+
+
+
+
 
 
 			pomodoro.startTimer();
@@ -546,14 +559,14 @@ function nextTimer() {
 			}
 
 
-			// end cut
+		
 
 
 
 
 
 
-		}
+		
 
 
 
