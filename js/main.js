@@ -183,7 +183,6 @@
 
 			if ((minutes == 0) && (seconds == 0)) {
 
-				alert("stop timer");
 
 				stopTimer();
 
@@ -229,16 +228,10 @@
 
 		var stopTimer = function() {
 
-			console.log(minutes);
-			console.log(seconds);
-				
-				// if ((timerType = "pomodoro")  && (minutes == 0) && (seconds == 0))
-				// {
-				// 	breakTimer.startTimer();
-				// }
+
+
 
 				status = "off";
-				// console.log(pomodoro.getStatus());
 
 
 				// Gives the start button an effect that it turned off 
@@ -252,9 +245,6 @@
 				changeButtonStatus("stop-button", "stop-text", "#350c1f");
 
 				
-
-				// nextTimer();
-
 
 
 		};
@@ -278,6 +268,9 @@
 
 				minutesId.innerHTML = minutes;
 				secondsId.innerHTML = seconds + "0";
+
+				breakMinutesId.innerHTML = "05";
+
 
 		};
 
@@ -477,7 +470,11 @@ function nextTimer() {
 
 		 	// CALCULATE THE FINAL BREAK TIMER BY ADDING POMODORO AND BREAK TIMER
 
-		    breakTimer.setMinutes(30);
+		 	var extendedTimerTotal = breakTimer.getStartMinutes() + pomodoro.getStartMinutes();
+
+		 	// alert(extendedTimerTotal);
+
+		    breakTimer.setMinutes(extendedTimerTotal);
 			breakMinutesId.innerHTML = breakTimer.getMinutes();
 
 
