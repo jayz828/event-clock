@@ -197,13 +197,13 @@
 
 				// Gives the start button an effect that it turned off 
 
-				changeButtonStatus("start-button", "start-text", "#1a280b");
+				changeButtonStatus("start-button", "start-text", "#1a280b", "start-mobile");
 
 
 
 				// Light up stop button
 
-				changeButtonStatus("stop-button", "stop-text", "#da0109");
+				changeButtonStatus("stop-button", "stop-text", "#da0109", "stop-mobile");
 
 		
 			
@@ -236,13 +236,13 @@
 
 				// Gives the start button an effect that it turned off 
 
-				changeButtonStatus("start-button", "start-text", "#00e415");
+				changeButtonStatus("start-button", "start-text", "#00e415", "start-mobile");
 
 
 
 				// Light up stop button
 
-				changeButtonStatus("stop-button", "stop-text", "#350c1f");
+				changeButtonStatus("stop-button", "stop-text", "#350c1f", "stop-mobile");
 
 				
 
@@ -356,13 +356,7 @@
 
 	var extendedTimer = new Timer(1, 0, "break-minutes", "break-seconds", "extended-break");
 
-	// var timersArray = [];
 
-	// timersArray.push(pomodoro);
-	// timersArray.push(breakTimer);
-
-	// // timersArray[0].startTimer();
-	// timersArray[1].startTimer();
 
 
 	// Main Timer controls Event Listeners
@@ -374,10 +368,21 @@
 	breakPlus.addEventListener("click", breakTimer.addTime);
 	breakMinus.addEventListener("click", breakTimer.minusTime);
 
-
+     // Normal Buttons
 	var startButton = document.getElementById("start-button");
 	var stopButton = document.getElementById("stop-button");
 	var resetButton = document.getElementById("reset-button");
+
+	// Mobile Buttons
+	var startMobileButton = document.getElementById("start-mobile");
+	var stopMobileButton = document.getElementById("stop-mobile");
+	var resetMobileButton = document.getElementById("reset-mobile");
+
+
+		/**
+		*  THE CODE BELOW CAN BE REFACTORED
+		*
+		**/
 
 	startButton.addEventListener("click", pomodoro.startTimer);
 	stopButton.addEventListener("click", function() {
@@ -387,31 +392,17 @@
 		pomodoro.executeMethod(2);
 	});
 
+	startMobileButton.addEventListener("click", pomodoro.startTimer);
+	stopMobileButton.addEventListener("click", function() {
+		pomodoro.executeMethod(1);
+	});
+	resetMobileButton.addEventListener("click", function() {
+		pomodoro.executeMethod(2);
+	});
 
 
 
-	// alert(pomodoro.getMinutes());
 
-
-
-	// var timer = {
-	// 	minute: 25,
-	// 	seconds: 59,
-	// 	milliseconds: 1000,
-	// 	timerStatus: "off"
-
-	// };
-
-
-// alert(pomodoro.constructor.name);
-
-// function startBreakTimer() {
-
-
-// 	breakTimer.startTimer();
-
-
-// }
 
 
 
@@ -430,13 +421,18 @@ window.onload = function() {
 
 
 
-function changeButtonStatus(button, text, color) {
+
+
+function changeButtonStatus(button, text, color, mobileButton) {
 
 	var disableButton = document.getElementById(button);
 	var disableText = document.getElementById(text);
+	var disableMobile = document.getElementById(mobileButton);
 
 	disableButton.style.borderColor = color;
 	disableText.style.color = color;
+	disableMobile.style.color = color;
+
 
 
 }
