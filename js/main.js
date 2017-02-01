@@ -378,11 +378,21 @@
 	var stopMobileButton = document.getElementById("stop-mobile");
 	var resetMobileButton = document.getElementById("reset-mobile");
 
+	var pomodoroMobilePlus = document.getElementById("timer-mobile-plus");
+	var pomodoroMobileMinus = document.getElementById("timer-mobile-minus");
+	var breakMobilePlus = document.getElementById("break-mobile-plus");
+	var breakMobileMinus = document.getElementById("break-mobile-minus");
+
+
+
 
 		/**
 		*  THE CODE BELOW CAN BE REFACTORED
 		*
 		**/
+
+
+	// Event Listeners
 
 	startButton.addEventListener("click", pomodoro.startTimer);
 	stopButton.addEventListener("click", function() {
@@ -399,6 +409,16 @@
 	resetMobileButton.addEventListener("click", function() {
 		pomodoro.executeMethod(2);
 	});
+
+
+	pomodoroMobilePlus.addEventListener("click", pomodoro.addTime);
+	pomodoroMobileMinus.addEventListener("click", pomodoro.minusTime);
+
+	breakMobilePlus.addEventListener("click", breakTimer.addTime);
+
+	breakMobileMinus.addEventListener("click", breakTimer.minusTime);
+
+
 
 
 
@@ -543,6 +563,9 @@ function nextTimer() {
 			breakTimer.startTimer();
 
 			startButton.addEventListener("click", breakTimer.startTimer);
+
+			// CHECK THIS CODE BELOW LATER, I don't think it needs an anonomous func
+
 			stopButton.addEventListener("click", function() {
 				breakTimer.executeMethod(1);
 			});
