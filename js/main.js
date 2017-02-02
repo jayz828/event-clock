@@ -184,6 +184,8 @@
 			if ((minutes == 0) && (seconds == 0)) {
 
 
+
+
 				stopTimer();
 
 
@@ -293,6 +295,12 @@
 	}
 
 
+
+
+	//  Alarm Sound
+
+	var alarm = new Audio('sounds/siren.mp3');
+	
 
 
 
@@ -459,6 +467,9 @@ function changeButtonStatus(button, text, color, mobileButton) {
 
 
 function nextTimer() {
+
+
+	alarm.play();
 
 	console.log("timer Counter " + timerCounter);
 
