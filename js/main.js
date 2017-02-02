@@ -532,7 +532,7 @@ function nextTimer() {
 
 
 			pomodoro.startTimer();
-
+			startButton.removeEventListener("click", breakTimer.startTimer);
 			startButton.addEventListener("click", pomodoro.startTimer);
 			stopButton.addEventListener("click", function() {
 				pomodoro.executeMethod(1);
@@ -573,7 +573,9 @@ function nextTimer() {
 
 			breakTimer.startTimer();
 
+			startButton.removeEventListener("click", pomodoro.startTimer);
 			startButton.addEventListener("click", breakTimer.startTimer);
+
 
 			// CHECK THIS CODE BELOW LATER, I don't think it needs an anonomous func
 
