@@ -1,9 +1,10 @@
 
 	// Timer object
 
-	function Timer(currentMinutes, currentSeconds, minutesElement, secondsElement, timerName) {
+	function Timer(nameOfObject,currentMinutes, currentSeconds, minutesElement, secondsElement, timerName) {
 		
 		// Values received from current time on page
+		var objectName = nameOfObject;
 		var minutes = parseInt(currentMinutes);
 		var seconds = parseInt(currentSeconds);
 		var timerType = timerName;
@@ -73,7 +74,9 @@
 			
 		};
 
-		
+		this.getName = function() {
+			return objectName;
+		};
 
 		this.getMinutes = function() {
 			return minutes;
@@ -166,11 +169,6 @@
 				}
 
 
-				// pageMinutes.innerHTML = pomodoro.minutes;
-
-
-
-
 
 
 
@@ -197,15 +195,18 @@
 				status = "on";
 
 
+
+				// startButton.removeEventListener("click", )
+
 				// Gives the start button an effect that it turned off 
 
-				changeButtonStatus("start-button", "start-text", "#1a280b", "start-mobile");
+				changeButtonStatus("start-button", "start-text", "#1a280b", "start-mobile",1,objectName);
 
 
 
 				// Light up stop button
 
-				changeButtonStatus("stop-button", "stop-text", "#da0109", "stop-mobile");
+				changeButtonStatus("stop-button", "stop-text", "#da0109", "stop-mobile",0, objectName);
 
 		
 			
@@ -238,13 +239,13 @@
 
 				// Gives the start button an effect that it turned off 
 
-				changeButtonStatus("start-button", "start-text", "#00e415", "start-mobile");
+				changeButtonStatus("start-button", "start-text", "#00e415", "start-mobile",0,objectName);
 
 
 
 				// Light up stop button
 
-				changeButtonStatus("stop-button", "stop-text", "#350c1f", "stop-mobile");
+				changeButtonStatus("stop-button", "stop-text", "#350c1f", "stop-mobile",0,objectName);
 
 				
 
@@ -344,7 +345,7 @@
 
 
 	// Create Main Timer Object
-	var pomodoro = new Timer(currentMinutes, currentSeconds, "minutes", "seconds", "pomodoro");
+	var pomodoro = new Timer("pomodoro",currentMinutes, currentSeconds, "minutes", "seconds", "pomodoro");
 
 
 	// Get current values for Break Timer
@@ -358,11 +359,11 @@
 
 	// Create Break Timer Object
 
-	var breakTimer = new Timer(breakMinutes, breakSeconds,"break-minutes", "break-seconds","break");
+	var breakTimer = new Timer("breakTimer",breakMinutes, breakSeconds,"break-minutes", "break-seconds","break");
 
 
 
-	var extendedTimer = new Timer(1, 0, "break-minutes", "break-seconds", "extended-break");
+	var extendedTimer = new Timer("extendedTimer",1, 0, "break-minutes", "break-seconds", "extended-break");
 
 
 
@@ -403,7 +404,7 @@
 	// Event Listeners
 
 	startButton.addEventListener("click", pomodoro.startTimer);
-	stopButton.addEventListener("click", function() {
+	stopButton.addEventListener("click", function stop() {
 		pomodoro.executeMethod(1);
 	});
 	resetButton.addEventListener("click", function() {
@@ -440,7 +441,6 @@
 
 
 
-
 window.onload = function() {
 
 
@@ -451,15 +451,53 @@ window.onload = function() {
 
 
 
-function changeButtonStatus(button, text, color, mobileButton) {
+function changeButtonStatus(button, text, color, mobileButton, removeListeners, callingObject) {
 
 	var disableButton = document.getElementById(button);
 	var disableText = document.getElementById(text);
 	var disableMobile = document.getElementById(mobileButton);
 
+	var replaceElement = disableButton.cloneNode(true); 
+
 	disableButton.style.borderColor = color;
 	disableText.style.color = color;
 	disableMobile.style.color = color;
+
+	console.log(callingObject);
+
+	if (button == "start-button") {
+
+
+
+			if (removeListeners == 1) {
+
+					var replaceElement = disableButton.cloneNode(true); 
+
+
+					disableButton.parentNode.replaceChild(replaceElement, disableButton);
+			} else {
+
+
+					if (callingObject == "pomodoro") {
+
+
+					console.log("add pomo listeners");
+
+
+					disableButton.addEventListener("click", pomodoro.startTimer);
+				} else {
+					disableButton.addEventListener("click", breakTimer.startTimer);
+				}
+			}
+
+	} else {
+
+	}
+
+		// Attempt to remove all event listeners attached to a element
+
+
+
 
 
 
@@ -488,10 +526,6 @@ function nextTimer() {
 			// Need to check visibility to set timer to 30 minutes
 
 			if (pomMeterLength == 1) {
-		    		// breakTimer.setMinutes(1);
-		    		// document.getElementById("break-minutes").innerHTML = 1;
-		    		// pomodoroBreakTimer();
-		 //    		alert('hidden');
 
 
 
@@ -532,9 +566,10 @@ function nextTimer() {
 
 
 			pomodoro.startTimer();
+			console.log("remove break");
 			startButton.removeEventListener("click", breakTimer.startTimer);
 			startButton.addEventListener("click", pomodoro.startTimer);
-			stopButton.addEventListener("click", function() {
+			stopButton.addEventListener("click", function stop() {
 				pomodoro.executeMethod(1);
 			});
 			resetButton.addEventListener("click", function() {
@@ -572,12 +607,14 @@ function nextTimer() {
 
 
 			breakTimer.startTimer();
-
+			console.log("remove pomo");
 			startButton.removeEventListener("click", pomodoro.startTimer);
 			startButton.addEventListener("click", breakTimer.startTimer);
 
 
 			// CHECK THIS CODE BELOW LATER, I don't think it needs an anonomous func
+
+			stopButton.removeEventListener("click", stop);
 
 			stopButton.addEventListener("click", function() {
 				breakTimer.executeMethod(1);
@@ -615,11 +652,10 @@ function pomodoroBreakTimer() {
 
 	extendedTimerCounter = true;
 
-	// console.log(extendedTimerCounter);
 
 	breakTimer.executeMethod(1);
 	pomodoro.executeMethod(1);
-	// breakTimer.startTimer();	
+
 	breakMinutesId.innerHTML = extendedTimer.getMinutes();
 	breakSecondsId.innerHTML = extendedTimer.getSeconds() + "0";
 
