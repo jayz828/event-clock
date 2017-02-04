@@ -200,7 +200,10 @@
 
 				// Gives the start button an effect that it turned off 
 
-				changeButtonStatus("start-button", "start-text", "#1a280b", "start-mobile",1,objectName);
+				changeButtonStatus("start-button", "start-text", "#1a280b", "start-mobile");
+
+
+				removeEvents("start-button");
 
 
 
@@ -233,6 +236,7 @@
 
 
 
+				addEvents("start-button");
 
 				status = "off";
 
@@ -449,6 +453,36 @@ window.onload = function() {
 
 
 
+function addEvents(button) {
+	var buttonId = document.getElementById("start-button");
+
+	if (pomodoro.getStatus() == "on") {
+		buttonId.addEventListener("click", pomodoro.startTimer);
+	} else if (breakTimer.getStatus ="on") {
+		buttonId.addEventListener("click", breakTimer.startTimer);
+	}
+}
+
+
+function removeEvents(button) {
+
+	var buttonId = document.getElementById(button);
+	// var replaceElement = buttonId.cloneNode(true);
+	// var test = document.getElementById("start-button");
+
+	console.log('remove events ');
+
+
+	// buttonId.parentNode.replaceChild(replaceElement, buttonId);
+
+	// console.log(pomodoro.getStatus());
+
+	buttonId.removeEventListener("click", pomodoro.startTimer);
+	buttonId.removeEventListener("click", breakTimer.startTimer);
+
+
+
+}
 
 
 function changeButtonStatus(button, text, color, mobileButton, removeListeners, callingObject) {
@@ -457,42 +491,42 @@ function changeButtonStatus(button, text, color, mobileButton, removeListeners, 
 	var disableText = document.getElementById(text);
 	var disableMobile = document.getElementById(mobileButton);
 
-	var replaceElement = disableButton.cloneNode(true); 
+	// var replaceElement = disableButton.cloneNode(true); 
 
 	disableButton.style.borderColor = color;
 	disableText.style.color = color;
 	disableMobile.style.color = color;
 
-	console.log(callingObject);
+	// console.log(callingObject);
 
-	if (button == "start-button") {
-
-
-
-			if (removeListeners == 1) {
-
-					var replaceElement = disableButton.cloneNode(true); 
+	// if (button == "start-button") {
 
 
-					disableButton.parentNode.replaceChild(replaceElement, disableButton);
-			} else {
+
+	// 		if (removeListeners == 1) {
+
+	// 				var replaceElement = disableButton.cloneNode(true); 
 
 
-					if (callingObject == "pomodoro") {
+	// 				disableButton.parentNode.replaceChild(replaceElement, disableButton);
+	// 		} else {
 
 
-					console.log("add pomo listeners");
+	// 				if (callingObject == "pomodoro") {
 
 
-					disableButton.addEventListener("click", pomodoro.startTimer);
-				} else {
-					disableButton.addEventListener("click", breakTimer.startTimer);
-				}
-			}
+	// 				console.log("add pomo listeners");
 
-	} else {
 
-	}
+	// 				disableButton.addEventListener("click", pomodoro.startTimer);
+	// 			} else {
+	// 				disableButton.addEventListener("click", breakTimer.startTimer);
+	// 			}
+	// 		}
+
+	// } else {
+
+	// }
 
 		// Attempt to remove all event listeners attached to a element
 
@@ -568,7 +602,7 @@ function nextTimer() {
 			pomodoro.startTimer();
 			console.log("remove break");
 			startButton.removeEventListener("click", breakTimer.startTimer);
-			startButton.addEventListener("click", pomodoro.startTimer);
+			// startButton.addEventListener("click", pomodoro.startTimer);
 			stopButton.addEventListener("click", function stop() {
 				pomodoro.executeMethod(1);
 			});
@@ -609,7 +643,7 @@ function nextTimer() {
 			breakTimer.startTimer();
 			console.log("remove pomo");
 			startButton.removeEventListener("click", pomodoro.startTimer);
-			startButton.addEventListener("click", breakTimer.startTimer);
+			// startButton.addEventListener("click", breakTimer.startTimer);
 
 
 			// CHECK THIS CODE BELOW LATER, I don't think it needs an anonomous func
