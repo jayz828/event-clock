@@ -270,6 +270,11 @@
 		};
 
 		var resetTimer = function() {
+				
+				var pomMeterId = document.getElementById("pom-meter");
+				pomMeterId.style.visibility = "visible";
+				pomMeterId.innerHTML = "////";
+
 				minutes = 25;
 				seconds = 0;
 
@@ -277,6 +282,9 @@
 				secondsId.innerHTML = seconds + "0";
 
 				breakMinutesId.innerHTML = "05";
+
+
+				startButton.addEventListener("click", pomodoro.startTimer);
 
 
 		};
@@ -562,27 +570,43 @@ function nextTimer() {
 			if (pomMeterLength == 1) {
 
 
-
 		 	// CALCULATE THE FINAL BREAK TIMER BY ADDING POMODORO AND BREAK TIMER
 
 		 	var extendedTimerTotal = breakTimer.getStartMinutes() + pomodoro.getStartMinutes();
 
 		 	// alert(extendedTimerTotal);
 
-		    breakTimer.setMinutes(extendedTimerTotal);
-			breakMinutesId.innerHTML = breakTimer.getMinutes();
+		 		if (pomMeter.style.visibility == "hidden") {
+		 				breakTimer.setMinutes(breakTimer.getStartMinutes());
+						breakMinutesId.innerHTML = "00";
+
+		 		} else {
+		 				breakTimer.setMinutes(extendedTimerTotal);
+						breakMinutesId.innerHTML = breakTimer.getMinutes();
+
+		 		}
+
+
 
 
 
 		    } else {
 
-
 			// Try to refactor this code since it is WET
 			// Get the minutes from when the timer first started and reset the timer to that time
-			
 
-			breakTimer.setMinutes(breakTimer.getStartMinutes());
-			breakMinutesId.innerHTML = "0" + breakTimer.getStartMinutes();
+
+
+						breakTimer.setMinutes(breakTimer.getStartMinutes());
+						breakMinutesId.innerHTML = "00";
+
+
+
+						// breakTimer.setMinutes(breakTimer.getStartMinutes());
+						// breakMinutesId.innerHTML = "0" + breakTimer.getStartMinutes();
+				
+					
+
 
 
 			}
@@ -681,34 +705,40 @@ function nextTimer() {
 var extendedTimerCounter = false;
 
 
-function pomodoroBreakTimer() {
-	alert('this should start');
 
-	extendedTimerCounter = true;
-
-
-	breakTimer.executeMethod(1);
-	pomodoro.executeMethod(1);
-
-	breakMinutesId.innerHTML = extendedTimer.getMinutes();
-	breakSecondsId.innerHTML = extendedTimer.getSeconds() + "0";
+/**
+ * NOT SURE IF CODE BELOW IS STILL NEEDED
+ **/
 
 
-	extendedTimer.startTimer();
+// function pomodoroBreakTimer() {
+// 	alert('this should start');
+
+// 	extendedTimerCounter = true;
 
 
-	startButton.addEventListener("click", extendedTimer.startTimer);
-	stopButton.addEventListener("click", function() {
-		extendedTimer.executeMethod(1);
-	});
-	resetButton.addEventListener("click", function() {
-		extendedTimer.executeMethod(2);
-	});
+// 	breakTimer.executeMethod(1);
+// 	pomodoro.executeMethod(1);
+
+// 	breakMinutesId.innerHTML = extendedTimer.getMinutes();
+// 	breakSecondsId.innerHTML = extendedTimer.getSeconds() + "0";
+
+
+// 	extendedTimer.startTimer();
+
+
+// 	startButton.addEventListener("click", extendedTimer.startTimer);
+// 	stopButton.addEventListener("click", function() {
+// 		extendedTimer.executeMethod(1);
+// 	});
+// 	resetButton.addEventListener("click", function() {
+// 		extendedTimer.executeMethod(2);
+// 	});
 	
 
 
 
-}
+// }
 
 
 (function(){
