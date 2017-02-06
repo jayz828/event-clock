@@ -437,12 +437,27 @@ body {
   color: #4395ae;
 }
 
+
+#pom-meter-container {
+  width: 50%;
+  display: block;
+  float: right;
+}
+
+
+
+
+
 #pom-meter {
   letter-spacing: 10px;
   padding-bottom: 0;
+  float: right;
+  font-size: 4.5em;
 
 
 }
+
+
 
 
 #mobile-controls p {
@@ -627,6 +642,9 @@ img {
 
 
 
+
+
+
 }
 
 
@@ -712,6 +730,7 @@ img {
       #break-timer p {
         font-size: 0.75em;
       }
+
 
 
 }

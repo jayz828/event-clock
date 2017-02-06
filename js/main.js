@@ -1,5 +1,25 @@
 
-	// Timer object
+
+/**
+ *
+ *  PLACE CODE IN NAMED IIFE MAIN TO CLEAN UP GLOBAL NAME SPACE
+ **/
+
+
+(function Main(){
+
+
+
+/**
+ *
+ *		Timer object
+ *
+ *  @params {String} nameOfObject, minutesElement, secondsElement, timerName
+ *  @params {Integer} currentMinutes, currentSeconds
+ *  
+ *  
+ **/
+
 
 	function Timer(nameOfObject,currentMinutes, currentSeconds, minutesElement, secondsElement, timerName) {
 		
@@ -205,6 +225,8 @@
 
 				removeEvents("start-button");
 
+				removeEvents("start-mobile");
+
 
 
 				// Light up stop button
@@ -236,7 +258,7 @@
 
 
 
-				addEvents("start-button");
+				addEvents("start-button", "start-mobile");
 
 				status = "off";
 
@@ -270,6 +292,8 @@
 		};
 
 		var resetTimer = function() {
+
+				removeEvents("start-mobile");
 				
 				var pomMeterId = document.getElementById("pom-meter");
 				pomMeterId.style.visibility = "visible";
@@ -285,6 +309,7 @@
 
 
 				startButton.addEventListener("click", pomodoro.startTimer);
+				startMobileButton.addEventListener("click", pomodoro.startTimer);
 
 
 		};
@@ -461,13 +486,16 @@ window.onload = function() {
 
 
 
-function addEvents(button) {
-	var buttonId = document.getElementById("start-button");
+function addEvents(button, button2) {
+	var buttonId = document.getElementById(button);
+	var button2Id = document.getElementById(button2);
 
 	if (pomodoro.getStatus() == "on") {
 		buttonId.addEventListener("click", pomodoro.startTimer);
+		button2Id.addEventListener("click", pomodoro.startTimer);
 	} else if (breakTimer.getStatus ="on") {
 		buttonId.addEventListener("click", breakTimer.startTimer);
+		button2Id.addEventListener("click", breakTimer.startTimer);
 	}
 }
 
@@ -635,6 +663,13 @@ function nextTimer() {
 			});
 
 
+			stopMobileButton.addEventListener("click", function() {
+				pomodoro.executeMethod(1);
+			});
+
+
+
+
 
 			
 
@@ -681,6 +716,14 @@ function nextTimer() {
 				breakTimer.executeMethod(2);
 			});
 			}
+
+			stopMobileButton.addEventListener("click", function() {
+				breakTimer.executeMethod(1);
+			});
+
+			resetMobileButton.addEventListener("click", function() {
+				breakTimer.executeMethod(1);
+			});
 
 
 		
@@ -741,12 +784,17 @@ var extendedTimerCounter = false;
 // }
 
 
-(function(){
+
 
 
 
 
 })();
+
+
+
+
+
 
 
 
