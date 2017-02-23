@@ -293,6 +293,9 @@
 
 		var resetTimer = function() {
 
+
+
+				console.log(secondsId);
 				removeEvents("start-mobile");
 				
 				var pomMeterId = document.getElementById("pom-meter");
@@ -306,6 +309,7 @@
 				secondsId.innerHTML = seconds + "0";
 
 				breakMinutesId.innerHTML = "05";
+				breakSecondsId.innerHTML = "00";
 
 
 				startButton.addEventListener("click", pomodoro.startTimer);
@@ -626,7 +630,20 @@ function nextTimer() {
 
 
 						breakTimer.setMinutes(breakTimer.getStartMinutes());
-						breakMinutesId.innerHTML = "00";
+						// breakMinutesId.innerHTML = "00";
+
+
+						if (breakTimer.getMinutes() < 10) {
+						 breakMinutesId.innerHTML = "0" + breakTimer.getMinutes();
+
+						} else {
+						  breakMinutesId.innerHTML = breakTimer.getMinutes();
+
+						}
+
+
+
+						
 
 
 
